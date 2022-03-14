@@ -1,0 +1,15 @@
+#! /bin/bash
+
+#( efetch -db Assembly -id 11983131 -format docsum | xtract -pattern DocumentSummary -element Id &&
+#efetch -db BioProject -id 801912 -format xml | xtract -pattern DocumentSummary -element Title &&
+#efetch -db BioSample -id 25416139 -format docsum | xtract -pattern DocumentSummary -element Title ) | awk '$1=$1' ORS=', ' 
+
+echo "A.Id,A.RsUid,A.GbUid,A.AssemblyAccession,A.LastMajorReleaseAccession,A.LatestAccession"
+RECORD=`efetch -db Assembly -id 11983131 -format docsum | xtract -pattern DocumentSummary -tab "," -element \
+Id RsUid GbUid AssemblyAccession LastMajorReleaseAccession LatestAccession`
+RECORD="$RECORD,`efetch -db BioProject -id 801912 -format xml | xtract -pattern DocumentSummary -tab "," -element Title`"
+RECORD="$RECORD,`efetch -db BioSample -id 25416139 -format docsum | xtract -pattern DocumentSummary -tab "," -element Title`"
+echo $RECORD
+
+
+

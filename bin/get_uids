@@ -1,0 +1,5 @@
+#! /bin/bash
+
+echo -n "# " 
+date
+esearch -db Assembly -query 'Stenotrophomonas maltophilia' | efetch -format uid # prideti latest filtra

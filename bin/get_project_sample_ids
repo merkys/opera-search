@@ -1,0 +1,3 @@
+#! /bin/bash
+
+grep -v "^#" $@ | xargs -I % sh -c 'efetch -db Assembly -id % -format docsum | xtract -pattern DocumentSummary -element Id BioSampleId -block GB_BioProjects -element BioprojectId'
