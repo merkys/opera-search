@@ -1,0 +1,39 @@
+#!/bin/perl
+
+use strict;
+use warnings;
+use Data::Dumper;
+use Bio::DB::EUtilities;
+use XML::Simple;
+use Hash::Flatten qw(:all);
+
+
+my $eutil = Bio::DB::EUtilities->new(-eutil => 'efetch',
+                                       -email      => 'd.razanovaite@gmail.com',
+                                       -db         => 'assembly',
+                                       -id       => '11983131',
+                                       -rettype =>'docsum');
+                                       
+
+my $resp = XMLin($eutil->get_Response->content);
+my $meta = $resp->{"DocumentSummarySet"}->{"DocumentSummary"}->{"Meta"};
+$meta =~ s/^\s+|\s+$//g;
+$meta= substr($meta,0, 959);
+$meta = XMLin($meta);
+#print Dumper($resp->{"DocumentSummarySet"});
+print Dumper($meta);
+my $flat = flatten($resp->{"DocumentSummarySet"}->{"DocumentSummary"});
+#print Dumper ($flat);
+
+my $header = join ",", sort keys %{$flat};
+#print "$header\n";
+
+foreach my $key (sort keys %{$flat})
+{
+ # print "$flat->{$key},";
+}
+print "\n";
+
+
+
+
