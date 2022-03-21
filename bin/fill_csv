@@ -1,0 +1,24 @@
+#!/bin/perl
+
+use strict;
+use warnings;
+use Data::Dumper;
+use XML::Simple;
+use Hash::Flatten qw(:all);
+
+
+my $xml;
+
+while (<>){
+	$xml.=$_;
+}
+$xml=flatten(XMLin($xml)->{"DocumentSummary"});
+
+my $i=keys %{$xml};
+foreach my $key (sort keys %{$xml})
+{
+  print $xml->{$key};
+  print "," if 0 < --$i;
+}
+print "\n";
+
