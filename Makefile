@@ -18,11 +18,11 @@ get_summary=fill_csv
 
 UIDS_FILE=${INP_DIR}/*.${TXT_EXT}
 #ASSEMBLY=${ASS_DIR}/*.${CSV_EXT}
-ASSEMBLY_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$1\\n}')
-#BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
-BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}')
+ASSEMBLY_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$1}')
 #BIOSAMPLE=${SAM_DIR}/*.${CSV_EXT}
-BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3$\n}')
+BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}')
+#BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
+BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3}')
 
 
 
@@ -40,30 +40,42 @@ get_ids: ${BIN_DIR}/${get_ids}
 	echo "# `date`"> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT}; \
 	echo "# Assembly_search_query=${SQUERY}" >> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT}; \
 	./$< ${SQUERY} >> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT};
+	
 
-#${ASSEMBLY}:
-${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_summary} ${BIN_DIR}/${get_header}
+
+${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} 
 	echo "# `date`"> $@; \
 	echo ${ASSEMBLY_IDS} \
-	| { while read id; do \
-	efetch -db Assembly -id "$${id}" -format docsum  \
-	| ./$< >> $@ ; \
-	done } 
+	| grep -o "^\w*\b" \
+	| xargs -I {} efetch -db Assembly -id {} -format docsum \
+	| ./$< >> $@; \
+	for ID in ${ASSEMBLY_IDS}; do \
+	efetch -db Assembly -id $${ID} -format docsum  \
+	| ./$(word 2,$^) >> $@; \
+	done;
 
 ${INP_DIR}/BioSample.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary}
 	echo "# `date`"> $@; \
-	echo ${ASSEMBLY_IDS} \
-	#| head -n 1 \
-	#| xargs -I {} efetch -db BioSample -id {} -format docsum \
-	>> $@;
+	echo ${BIOSAMPLE_IDS} \
+	| grep -o "^\w*\b" \
+	| xargs -I {} efetch -db BioSample -id {} -format docsum \
+	| ./$< >> $@; \
+	for ID in ${BIOSAMPLE_IDS}; do \
+	efetch -db BioSample -id $${ID} -format docsum  \
+	| ./$(word 2,$^) >> $@; \
+	done;
 	
-${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_summary} ${BIN_DIR}/${get_header}
+	
+${INP_DIR}/BioProject.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} 
 	echo "# `date`"> $@; \
-	echo ${ASSEMBLY_IDS} \
-	| { while read id; do \
-	efetch -db Assembly -id "$${id}" -format docsum  \
-	| ./$< >> $@ ; \
-	done } 
+	echo ${BIOPROJECT_IDS} \
+	| grep -o "^\w*\b" \
+	| xargs -I {} efetch -db BioProject -id {} -format xml \
+	| ./$< >> $@; \
+	for ID in ${BIOPROJECT_IDS}; do \
+	efetch -db BioProject -id $${ID} -format xml  \
+	| ./$(word 2,$^) >> $@; \
+	done;
 	
 	
 	
