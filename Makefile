@@ -16,7 +16,7 @@ get_ids=get_uids
 get_header=header_csv
 get_summary=fill_csv
 
-UIDS_FILE=${INP_DIR}/*.${TXT_EXT}
+UIDS_FILE=${INP_DIR}/ids.csv
 #ASSEMBLY=${ASS_DIR}/*.${CSV_EXT}
 ASSEMBLY_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$1}')
 #BIOSAMPLE=${SAM_DIR}/*.${CSV_EXT}
@@ -35,11 +35,10 @@ display:
 	echo ${VAR}=${${VAR}}
 
 #Usage: make get_ids SQUERY=pubmed_search_query
-get_ids: ${BIN_DIR}/${get_ids}
-	FNAME=`echo ${SQUERY} | sed -e 's/[]\$\!\*\?\;\&\>\<)\(}\{\[]\t /_/g'`; \
-	echo "# `date`"> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT}; \
-	echo "# Assembly_search_query=${SQUERY}" >> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT}; \
-	./$< ${SQUERY} >> ${INP_DIR}/$${FNAME}`date +%Y-%m-%d`.${TXT_EXT};
+${INP_DIR}/ids.csv: ${BIN_DIR}/${get_ids}
+	echo "# `date`"> $@
+	echo "# Assembly_search_query=${SQUERY}" >> $@
+	./$< ${SQUERY} >> $@
 	
 
 
