@@ -43,15 +43,14 @@ ${INP_DIR}/ids.csv: ${BIN_DIR}/${get_ids}
 
 
 ${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} 
-	echo "# `date`"> $@; \
-	echo ${ASSEMBLY_IDS} \
-	| grep -o "^\w*\b" \
+	echo "# `date`"> $@
+	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | head -n 1 \
 	| xargs -I {} efetch -db Assembly -id {} -format docsum \
-	| ./$< >> $@; \
-	for ID in ${ASSEMBLY_IDS}; do \
+	| ./$< >> $@
+	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | while read ID; do \
 	efetch -db Assembly -id $${ID} -format docsum  \
 	| ./$(word 2,$^) >> $@; \
-	done;
+	done
 
 ${INP_DIR}/BioSample.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary}
 	echo "# `date`"> $@; \
