@@ -2,4 +2,4 @@
 
 
 echo "Assembly,BioSample,BioProject"
-esearch -db Assembly -query $1 | efetch -format uid | xargs -I % sh -c 'efetch -db Assembly -id % -format docsum | xtract -pattern DocumentSummary -tab "," -element Id BioSampleId -block GB_BioProjects -element BioprojectId'
+esearch -db Assembly -query $1 | efetch -format uid | xargs -I % sh -c 'efetch -db Assembly -id % -format docsum | xtract -pattern DocumentSummary -tab "," -def "N/A" -element Id BioSampleId -block GB_BioProjects -element BioprojectId'

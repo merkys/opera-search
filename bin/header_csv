@@ -6,13 +6,29 @@ use Data::Dumper;
 use XML::Simple;
 use Hash::Flatten qw(:all);
 
+sub checkHash {
+    my ($element) = @_;
+      
+    return unless 'HASH' eq ref $element;
+    
+    for my $key (sort keys %$element) {
+        if ('HASH' eq ref $element->{$key}){
+        	$element->{$key}='N/A' if 0==scalar %{$element->{$key}};
+        }
+        checkHash ($element->{$key});   
+    }
+    return;
+}
 
 my $xml;
 
 while (<>){
 	$xml.=$_;
 }
-$xml=flatten(XMLin($xml)->{"DocumentSummary"});
+$xml=XMLin($xml)->{"DocumentSummary"};
+checkHash($xml);
+$xml=flatten($xml);
+
 
 my $i=keys %{$xml};
 foreach my $key (sort keys %{$xml})
@@ -21,4 +37,8 @@ foreach my $key (sort keys %{$xml})
   print "," if 0 < --$i;
 }
 print "\n";
+
+
+
+
 
