@@ -24,6 +24,8 @@ BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}'
 #BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
 BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3}')
 
+PROTEIN_FILES = ${INP_DIR}/*protein.faa.gz
+
 
 
 
@@ -33,14 +35,31 @@ VAR=PATH
 
 display:
 	echo ${VAR}=${${VAR}}
+	
+blastp:
+	#makeblastdb -in inputs/multifasta.faa -dbtype prot; \
+	blastp -query inputs/VFDB_setB_pro.fas -subject inputs/multifasta.faa -outfmt 7 -out blastp_out.tab;
+
+
+
+${INP_DIR}/multifasta.faa: ${PROTEIN_FILES}
+	
+	for faa in ${PROTEIN_FILES}; \
+	do \
+		bn=`basename -- $${faa}`; \
+		gunzip -c $${faa}| \
+		sed "/^>/ s/$$/ $${bn}/" >> $@; \
+	done; 
+
 
 get_data: ${INP_DIR}/Assembly.${CSV_EXT}
-	for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
+	- for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
 	do \
-		- cat ${INP_DIR}/Assembly.${CSV_EXT} | \
+		cat ${INP_DIR}/Assembly.${CSV_EXT} | \
 		tail -n +3 | \
 		awk -F, "match(\$$33, /\/GCA_/) {print \$$33 substr(\$$33, RSTART) \"$${extension}\"}" \
-		| xargs -I {} wget -P ${INP_DIR} -nc {}
+		| xargs -I {} wget -P ${INP_DIR} -nc {};\
+		sleep 1; \
 	done;
 	
 #VFDB_setB_nt.fas.gz VFDB_setB_pro.fas.gz
