@@ -24,7 +24,11 @@ BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}'
 #BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
 BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3}')
 
-PROTEIN_FILES = ${INP_DIR}/*protein.faa.gz
+PROTEIN_FILES = $(wildcard ${INP_DIR}/*protein.faa.gz)
+BLASTP_FILES= ${PROTEIN_FILES:${INP_DIR}/%protein.faa.gz=${INP_DIR}/%protein_blastp.tab}
+
+NUC_FILES = $(wildcard ${INP_DIR}/*genomic.fna.gz)
+BLASTN_FILES= ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${INP_DIR}/%genomic_blastn.tab}
 
 
 
@@ -36,20 +40,17 @@ VAR=PATH
 display:
 	echo ${VAR}=${${VAR}}
 	
-blastp:
-	#makeblastdb -in inputs/multifasta.faa -dbtype prot; \
-	blastp -query inputs/VFDB_setB_pro.fas -subject inputs/multifasta.faa -outfmt 7 -out blastp_out.tab;
-
-
-
-${INP_DIR}/multifasta.faa: ${PROTEIN_FILES}
+blastp: ${BLASTP_FILES}
 	
-	for faa in ${PROTEIN_FILES}; \
-	do \
-		bn=`basename -- $${faa}`; \
-		gunzip -c $${faa}| \
-		sed "/^>/ s/$$/ $${bn}/" >> $@; \
-	done; 
+${INP_DIR}/%protein_blastp.tab: ${INP_DIR}/VFDB_setB_pro.fas 
+	gunzip -c ${INP_DIR}/$*protein.faa.gz | \
+	blastp -num_threads 16 -qcov_hsp_perc 0.8 -evalue 0.001 -query $< -subject - -outfmt 7 -out $@;
+
+blastn: ${BLASTN_FILES}
+	
+${INP_DIR}/%genomic_blastn.tab: ${INP_DIR}/VFDB_setB_nt.fas 
+	gunzip -c ${INP_DIR}/$*genomic.fna.gz | \
+	blastn -qcov_hsp_perc 0.8 -evalue 0.001 -query $< -subject - -outfmt 7 -out $@;
 
 
 get_data: ${INP_DIR}/Assembly.${CSV_EXT}
