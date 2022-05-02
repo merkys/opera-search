@@ -43,19 +43,22 @@ display:
 
 
 matrixn.${CSV_EXT}: ${BLASTN_FILES}
-	ls outputs/*blastn.tab | head -n 1 | xargs -I {} cat {} | grep -oP 'Query: \K\S+' | tr '\n' ',' | head -c -1 > $@; \
-	echo '' >> $@; \
+	echo  -n ',' > $@;
+	ls outputs/*blastn.tab | head -n 1 | xargs -I {} cat {} | grep -oP 'Query: \K\S+' | tr '\n' ',' | head -c -1 >> $@; \
+	#echo '' >> $@; \
 	for BLASTN in outputs/*blastn.tab; \
 	do \
+		echo -n "$${BLASTN}," >> $@; \
 		cat $${BLASTN} | grep -oP '^# \K\d+ (?=hits)' | tr '\n' ',' | tr -d '[:space:]' | head -c -1 >> $@; \
 		echo '' >> $@; \
 	done; \
 
 matrixp.${CSV_EXT}: ${BLASTP_FILES}
-	ls outputs/*blastp.tab | head -n 1 | xargs -I {} cat {} | grep -oP 'Query: \K\S+' | tr '\n' ',' | head -c -1 > $@; \
-	echo '' >> $@; \
+	echo -n ',' > $@
+	ls outputs/*blastp.tab | head -n 1 | xargs -I {} cat {} | grep -oP 'Query: \K\S+' | tr '\n' ',' | head -c -1 >> $@; \
 	for BLASTP in outputs/*blastp.tab; \
 	do \
+		echo -n "$${BLASTP}," >> $@; \
 		cat $${BLASTP} | grep -oP '^# \K\d+ (?=hits)' | tr '\n' ',' | tr -d '[:space:]' | head -c -1 >> $@; \
 		echo '' >> $@; \
 	done; \
