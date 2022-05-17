@@ -1,0 +1,109 @@
+# Tue 17 May 2022 10:04:11 AM EEST
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE DocumentSummarySet PUBLIC "-//NLM//DTD esummary assembly 20211202//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20211202/esummary_assembly.dtd">
+
+<DocumentSummarySet status="OK">
+<DocumentSummary>
+<Id>12349371</Id>
+	<RsUid>32352628</RsUid>
+	<GbUid>32350808</GbUid>
+	<AssemblyAccession>GCF_022630735.1</AssemblyAccession>
+	<LastMajorReleaseAccession>GCF_022630735.1</LastMajorReleaseAccession>
+	<LatestAccession></LatestAccession>
+	<ChainId>22630735</ChainId>
+	<AssemblyName>ASM2263073v1</AssemblyName>
+	<UCSCName></UCSCName>
+	<EnsemblName></EnsemblName>
+	<Taxid>40324</Taxid>
+	<Organism>Stenotrophomonas maltophilia (g-proteobacteria)</Organism>
+	<SpeciesTaxid>40324</SpeciesTaxid>
+	<SpeciesName>Stenotrophomonas maltophilia</SpeciesName>
+	<AssemblyType>haploid</AssemblyType>
+	<AssemblyStatus>Contig</AssemblyStatus>
+	<AssemblyStatusSort>5</AssemblyStatusSort>
+	<WGS>JALBDK01</WGS>
+	<GB_BioProjects>
+		<Bioproj>
+			<BioprojectAccn>PRJNA814396</BioprojectAccn>
+			<BioprojectId>814396</BioprojectId>
+		</Bioproj>
+	</GB_BioProjects>
+	<GB_Projects>
+	</GB_Projects>
+	<RS_BioProjects>
+		<Bioproj>
+			<BioprojectAccn>PRJNA224116</BioprojectAccn>
+			<BioprojectId>224116</BioprojectId>
+		</Bioproj>
+	</RS_BioProjects>
+	<RS_Projects>
+	</RS_Projects>
+	<BioSampleAccn>SAMN26589457</BioSampleAccn>
+	<BioSampleId>26589457</BioSampleId>
+	<Biosource>
+		<InfraspeciesList>
+			<Infraspecie>
+				<Sub_type>strain</Sub_type>
+				<Sub_value>NMG-F-4</Sub_value>
+			</Infraspecie>
+		</InfraspeciesList>
+		<Sex></Sex>
+		<Isolate></Isolate>
+	</Biosource>
+	<Coverage>300</Coverage>
+	<PartialGenomeRepresentation>false</PartialGenomeRepresentation>
+	<Primary>32352618</Primary>
+	<AssemblyDescription></AssemblyDescription>
+	<ReleaseLevel>Major</ReleaseLevel>
+	<ReleaseType>Major</ReleaseType>
+	<AsmReleaseDate_GenBank>2022/03/19 00:00</AsmReleaseDate_GenBank>
+	<AsmReleaseDate_RefSeq>2022/03/21 00:00</AsmReleaseDate_RefSeq>
+	<SeqReleaseDate>2022/03/19 00:00</SeqReleaseDate>
+	<AsmUpdateDate>2022/03/21 00:00</AsmUpdateDate>
+	<SubmissionDate>2022/03/19 00:00</SubmissionDate>
+	<LastUpdateDate>2022/03/21 00:00</LastUpdateDate>
+	<SubmitterOrganization>Department of Laboratory Medicine</SubmitterOrganization>
+	<RefSeq_category>na</RefSeq_category>
+	<AnomalousList>
+	</AnomalousList>
+	<ExclFromRefSeq>
+	</ExclFromRefSeq>
+	<PropertyList>
+		<string>full-genome-representation</string>
+		<string>genbank_has_annotation</string>
+		<string>has_annotation</string>
+		<string>latest</string>
+		<string>latest_genbank</string>
+		<string>latest_refseq</string>
+		<string>refseq_has_annotation</string>
+		<string>wgs</string>
+	</PropertyList>
+	<FromType></FromType>
+	<Synonym>
+		<Genbank>GCA_022630735.1</Genbank>
+		<RefSeq>GCF_022630735.1</RefSeq>
+		<Similarity>identical</Similarity>
+	</Synonym>
+	<ContigN50>135644</ContigN50>
+	<ScaffoldN50>135644</ScaffoldN50>
+	<FtpPath_GenBank>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/022/630/735/GCA_022630735.1_ASM2263073v1</FtpPath_GenBank>
+	<FtpPath_RefSeq>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1</FtpPath_RefSeq>
+	<FtpPath_Assembly_rpt>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1/GCF_022630735.1_ASM2263073v1_assembly_report.txt</FtpPath_Assembly_rpt>
+	<FtpPath_Stats_rpt>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1/GCF_022630735.1_ASM2263073v1_assembly_stats.txt</FtpPath_Stats_rpt>
+	<FtpPath_Regions_rpt></FtpPath_Regions_rpt>
+	<Busco>
+		<RefSeqAnnotationRelease></RefSeqAnnotationRelease>
+		<BuscoLineage></BuscoLineage>
+		<BuscoVer></BuscoVer>
+		<Complete></Complete>
+		<SingleCopy></SingleCopy>
+		<Duplicated></Duplicated>
+		<Fragmented></Fragmented>
+		<Missing></Missing>
+		<TotalCount>0</TotalCount>
+	</Busco>
+	<SortOrder>5C5X3B439998643550226307359898</SortOrder>
+	<Meta><Stats> <Stat category="alt_loci_count" sequence_tag="all">0</Stat> <Stat category="chromosome_count" sequence_tag="all">0</Stat> <Stat category="contig_count" sequence_tag="all">83</Stat> <Stat category="contig_l50" sequence_tag="all">11</Stat> <Stat category="contig_n50" sequence_tag="all">135644</Stat> <Stat category="non_chromosome_replicon_count" sequence_tag="all">0</Stat> <Stat category="replicon_count" sequence_tag="all">0</Stat> <Stat category="scaffold_count" sequence_tag="all">83</Stat> <Stat category="scaffold_count" sequence_tag="placed">0</Stat> <Stat category="scaffold_count" sequence_tag="unlocalized">0</Stat> <Stat category="scaffold_count" sequence_tag="unplaced">83</Stat> <Stat category="scaffold_l50" sequence_tag="all">11</Stat> <Stat category="scaffold_n50" sequence_tag="all">135644</Stat> <Stat category="total_length" sequence_tag="all">4662270</Stat> <Stat category="ungapped_length" sequence_tag="all">4662270</Stat> </Stats> <FtpSites>   <FtpPath type="Assembly_rpt">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1/GCF_022630735.1_ASM2263073v1_assembly_report.txt</FtpPath>   <FtpPath type="GenBank">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/022/630/735/GCA_022630735.1_ASM2263073v1</FtpPath>   <FtpPath type="RefSeq">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1</FtpPath>   <FtpPath type="Stats_rpt">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/022/630/735/GCF_022630735.1_ASM2263073v1/GCF_022630735.1_ASM2263073v1_assembly_stats.txt</FtpPath> </FtpSites> <assembly-level>1</assembly-level> <assembly-status>Contig</assembly-status> <representative-status>na</representative-status> <submitter-organization>Department of Laboratory Medicine</submitter-organization> <taxonomy-check-status>OK</taxonomy-check-status></Meta>
+</DocumentSummary>
+</DocumentSummarySet>
+

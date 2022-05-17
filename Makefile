@@ -15,14 +15,18 @@ SAM_DIR=${INP_DIR}/BioSample
 get_ids=get_uids
 get_header=header_csv
 get_summary=fill_csv
+get_max=get_max
 
 UIDS_FILE=${INP_DIR}/ids.csv
 #ASSEMBLY=${ASS_DIR}/*.${CSV_EXT}
 ASSEMBLY_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$1}')
+ASSEMBLY_FILES = ${ASSEMBLY_IDS:%=${INP_DIR}/xmls/Assembly_%.xml}}
 #BIOSAMPLE=${SAM_DIR}/*.${CSV_EXT}
 BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}')
+BIOSAMPLE_FILES = ${BIOSAMPLE_IDS:%=${INP_DIR}/xmls/BioSample_%.xml}}
 #BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
 BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3}')
+BIOPROJECT_FILES = ${BIOPROJECT_IDS:%=${INP_DIR}/xmls/BioProject_%.xml}}
 
 PROTEIN_FILES = $(wildcard ${INP_DIR}/*protein.faa.gz)
 BLASTP_FILES= ${PROTEIN_FILES:${INP_DIR}/%protein.faa.gz=${OUT_DIR}/%protein_blastp.tab}
@@ -120,15 +124,22 @@ ${INP_DIR}/Summary.${CSV_EXT}: ${INP_DIR}/Assembly.${CSV_EXT} ${INP_DIR}/BioSamp
 	paste -d ',' $< $(word 2,$^) $(word 3,$^) >> $@
 
 
-${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} ${INP_DIR}/ids.csv
+${INP_DIR}/Assembly.${CSV_EXT}: ${BIN_DIR}/${get_max} ${BIN_DIR}/${get_header} ${INP_DIR}/ids.csv
+	#ROWNUM=`cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | while read ID; do \
+	#efetch -db Assembly -id $${ID} -format docsum \
+	#| ./$<; \
+	#done \
+	#| awk '(NR==1){Max=$$1;MaxNr=1};(NR>=2){if(Max<$$1) {Max=$$1; MaxNr=NR}} END {print MaxNr}'`; \
+	#echo "hi" > $${ROWNUM};
+	ROWNUM=987; \
 	echo "# `date`"> $@
-	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | head -n 1 \
+	cat ${UIDS_FILE} | head -n 987 | tail -n 1 | cut -d , -f 1 \
 	| xargs -I {} efetch -db Assembly -id {} -format docsum \
-	| ./$< >> $@
-	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | while read ID; do \
-	efetch -db Assembly -id $${ID} -format docsum  \
-	| ./$(word 2,$^) >> $@; \
-	done
+	| ./$(word 2,$^) >> $@
+	#cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 1 | while read ID; do \
+	#efetch -db Assembly -id $${ID} -format docsum  \
+	#| ./$(word 3,$^) >> $@; \
+	#done
 
 ${INP_DIR}/BioSample.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} ${INP_DIR}/ids.csv
 	echo "# `date`"> $@
@@ -140,7 +151,6 @@ ${INP_DIR}/BioSample.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summa
 	| ./$(word 2,$^) >> $@; \
 	done;
 	
-	
 ${INP_DIR}/BioProject.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} ${INP_DIR}/ids.csv
 	echo "# `date`"> $@
 	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 3 | head -n 1 \
@@ -151,8 +161,18 @@ ${INP_DIR}/BioProject.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summ
 	| ./$(word 2,$^) >> $@; \
 	done;
 	
-	
-	
-	
+get_xmls: ${ASSEMBLY_FILES} ${BIOSAMPLE_FILES} ${BIOPROJECT_FILES}
+
+${INP_DIR}/xmls/Assembly_%.xml:
+	echo "# `date`"> $@
+	efetch -db Assembly -id $* -format docsum >> $@;
+
+${INP_DIR}/xmls/BioSample_%.xml:
+	echo "# `date`"> $@
+	efetch -db BioSample -id $* -format docsum >> $@;
+
+${INP_DIR}/xmls/BioProject_%.xml:
+	echo "# `date`"> $@
+	efetch -db BioProject -id $* -format xml >> $@;
 
 

@@ -1,0 +1,109 @@
+# Tue 17 May 2022 10:05:27 AM EEST
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE DocumentSummarySet PUBLIC "-//NLM//DTD esummary assembly 20211202//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20211202/esummary_assembly.dtd">
+
+<DocumentSummarySet status="OK">
+<DocumentSummary>
+<Id>11326971</Id>
+	<RsUid>29949518</RsUid>
+	<GbUid>29833448</GbUid>
+	<AssemblyAccession>GCF_020641395.1</AssemblyAccession>
+	<LastMajorReleaseAccession>GCF_020641395.1</LastMajorReleaseAccession>
+	<LatestAccession></LatestAccession>
+	<ChainId>20641395</ChainId>
+	<AssemblyName>ASM2064139v1</AssemblyName>
+	<UCSCName></UCSCName>
+	<EnsemblName></EnsemblName>
+	<Taxid>40324</Taxid>
+	<Organism>Stenotrophomonas maltophilia (g-proteobacteria)</Organism>
+	<SpeciesTaxid>40324</SpeciesTaxid>
+	<SpeciesName>Stenotrophomonas maltophilia</SpeciesName>
+	<AssemblyType>haploid</AssemblyType>
+	<AssemblyStatus>Contig</AssemblyStatus>
+	<AssemblyStatusSort>5</AssemblyStatusSort>
+	<WGS>JAIOAJ01</WGS>
+	<GB_BioProjects>
+		<Bioproj>
+			<BioprojectAccn>PRJNA759338</BioprojectAccn>
+			<BioprojectId>759338</BioprojectId>
+		</Bioproj>
+	</GB_BioProjects>
+	<GB_Projects>
+	</GB_Projects>
+	<RS_BioProjects>
+		<Bioproj>
+			<BioprojectAccn>PRJNA224116</BioprojectAccn>
+			<BioprojectId>224116</BioprojectId>
+		</Bioproj>
+	</RS_BioProjects>
+	<RS_Projects>
+	</RS_Projects>
+	<BioSampleAccn>SAMN21163376</BioSampleAccn>
+	<BioSampleId>21163376</BioSampleId>
+	<Biosource>
+		<InfraspeciesList>
+			<Infraspecie>
+				<Sub_type>strain</Sub_type>
+				<Sub_value>ACYCa.6E</Sub_value>
+			</Infraspecie>
+		</InfraspeciesList>
+		<Sex></Sex>
+		<Isolate></Isolate>
+	</Biosource>
+	<Coverage>38</Coverage>
+	<PartialGenomeRepresentation>false</PartialGenomeRepresentation>
+	<Primary>29949508</Primary>
+	<AssemblyDescription></AssemblyDescription>
+	<ReleaseLevel>Major</ReleaseLevel>
+	<ReleaseType>Major</ReleaseType>
+	<AsmReleaseDate_GenBank>2021/10/27 00:00</AsmReleaseDate_GenBank>
+	<AsmReleaseDate_RefSeq>2021/11/03 00:00</AsmReleaseDate_RefSeq>
+	<SeqReleaseDate>2021/10/27 00:00</SeqReleaseDate>
+	<AsmUpdateDate>2021/11/03 00:00</AsmUpdateDate>
+	<SubmissionDate>2021/10/27 00:00</SubmissionDate>
+	<LastUpdateDate>2021/11/03 00:00</LastUpdateDate>
+	<SubmitterOrganization>The Independent Schools Foundation Academy</SubmitterOrganization>
+	<RefSeq_category>na</RefSeq_category>
+	<AnomalousList>
+	</AnomalousList>
+	<ExclFromRefSeq>
+	</ExclFromRefSeq>
+	<PropertyList>
+		<string>full-genome-representation</string>
+		<string>genbank_has_annotation</string>
+		<string>has_annotation</string>
+		<string>latest</string>
+		<string>latest_genbank</string>
+		<string>latest_refseq</string>
+		<string>refseq_has_annotation</string>
+		<string>wgs</string>
+	</PropertyList>
+	<FromType></FromType>
+	<Synonym>
+		<Genbank>GCA_020641395.1</Genbank>
+		<RefSeq>GCF_020641395.1</RefSeq>
+		<Similarity>identical</Similarity>
+	</Synonym>
+	<ContigN50>96532</ContigN50>
+	<ScaffoldN50>96532</ScaffoldN50>
+	<FtpPath_GenBank>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/020/641/395/GCA_020641395.1_ASM2064139v1</FtpPath_GenBank>
+	<FtpPath_RefSeq>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1</FtpPath_RefSeq>
+	<FtpPath_Assembly_rpt>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1/GCF_020641395.1_ASM2064139v1_assembly_report.txt</FtpPath_Assembly_rpt>
+	<FtpPath_Stats_rpt>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1/GCF_020641395.1_ASM2064139v1_assembly_stats.txt</FtpPath_Stats_rpt>
+	<FtpPath_Regions_rpt></FtpPath_Regions_rpt>
+	<Busco>
+		<RefSeqAnnotationRelease></RefSeqAnnotationRelease>
+		<BuscoLineage></BuscoLineage>
+		<BuscoVer></BuscoVer>
+		<Complete></Complete>
+		<SingleCopy></SingleCopy>
+		<Duplicated></Duplicated>
+		<Fragmented></Fragmented>
+		<Missing></Missing>
+		<TotalCount>0</TotalCount>
+	</Busco>
+	<SortOrder>5C5X3B439999034670206413959898</SortOrder>
+	<Meta><Stats> <Stat category="alt_loci_count" sequence_tag="all">0</Stat> <Stat category="chromosome_count" sequence_tag="all">0</Stat> <Stat category="contig_count" sequence_tag="all">117</Stat> <Stat category="contig_l50" sequence_tag="all">17</Stat> <Stat category="contig_n50" sequence_tag="all">96532</Stat> <Stat category="non_chromosome_replicon_count" sequence_tag="all">0</Stat> <Stat category="replicon_count" sequence_tag="all">0</Stat> <Stat category="scaffold_count" sequence_tag="all">117</Stat> <Stat category="scaffold_count" sequence_tag="placed">0</Stat> <Stat category="scaffold_count" sequence_tag="unlocalized">0</Stat> <Stat category="scaffold_count" sequence_tag="unplaced">117</Stat> <Stat category="scaffold_l50" sequence_tag="all">17</Stat> <Stat category="scaffold_n50" sequence_tag="all">96532</Stat> <Stat category="total_length" sequence_tag="all">4655182</Stat> <Stat category="ungapped_length" sequence_tag="all">4655182</Stat> </Stats> <FtpSites>   <FtpPath type="Assembly_rpt">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1/GCF_020641395.1_ASM2064139v1_assembly_report.txt</FtpPath>   <FtpPath type="GenBank">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/020/641/395/GCA_020641395.1_ASM2064139v1</FtpPath>   <FtpPath type="RefSeq">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1</FtpPath>   <FtpPath type="Stats_rpt">ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/020/641/395/GCF_020641395.1_ASM2064139v1/GCF_020641395.1_ASM2064139v1_assembly_stats.txt</FtpPath> </FtpSites> <assembly-level>1</assembly-level> <assembly-status>Contig</assembly-status> <representative-status>na</representative-status> <submitter-organization>The Independent Schools Foundation Academy</submitter-organization> <taxonomy-check-status>OK</taxonomy-check-status></Meta>
+</DocumentSummary>
+</DocumentSummarySet>
+
