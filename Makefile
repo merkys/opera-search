@@ -1,3 +1,4 @@
+
 #extensions:
 CSV_EXT=csv
 LST_EXT=lst
@@ -20,18 +21,19 @@ get_max=get_max
 UIDS_FILE=${INP_DIR}/ids.csv
 #ASSEMBLY=${ASS_DIR}/*.${CSV_EXT}
 ASSEMBLY_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$1}')
-ASSEMBLY_FILES = ${ASSEMBLY_IDS:%=${INP_DIR}/xmls/Assembly_%.xml}}
+ASSEMBLY_FILES = ${ASSEMBLY_IDS:%=${INP_DIR}/xmls/Assembly_%.xml}
 #BIOSAMPLE=${SAM_DIR}/*.${CSV_EXT}
 BIOSAMPLE_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$2}')
-BIOSAMPLE_FILES = ${BIOSAMPLE_IDS:%=${INP_DIR}/xmls/BioSample_%.xml}}
+BIOSAMPLE_FILES = ${BIOSAMPLE_IDS:%=${INP_DIR}/xmls/BioSample_%.xml}
 #BIOPROJECT= ${PRO_DIR}/*.${CSV_EXT}
 BIOPROJECT_IDS = $(shell cat ${UIDS_FILE} | tail -n +4 | awk -F ',' '{print $$3}')
-BIOPROJECT_FILES = ${BIOPROJECT_IDS:%=${INP_DIR}/xmls/BioProject_%.xml}}
+BIOPROJECT_FILES = ${BIOPROJECT_IDS:%=${INP_DIR}/xmls/BioProject_%.xml}
 
 PROTEIN_FILES = $(wildcard ${INP_DIR}/*protein.faa.gz)
 BLASTP_FILES= ${PROTEIN_FILES:${INP_DIR}/%protein.faa.gz=${OUT_DIR}/%protein_blastp.tab}
 
 NUC_FILES = $(wildcard ${INP_DIR}/*genomic.fna.gz)
+FASTA_FILES = ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${INP_DIR}/fasta/%genomic.fna}
 BLASTN_FILES = ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${OUT_DIR}/%genomic_blastn.tab}
 BED_FILES = ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${OUT_DIR}/%genomic_intersect.bed}
 BED_FASTA = ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${OUT_DIR}/%genomic_intersect.fasta}
@@ -45,6 +47,20 @@ VAR=PATH
 display:
 	echo ${VAR}=${${VAR}}
 
+busco:
+	busco -c 30 -i inputs/fasta/left  -l xanthomonadales_odb10 -o xanthomonadales2 -m genome
+
+busco_values.csv:
+	echo "Genomes;C;S;D;F;M;n" > $@; 
+	for BUSCO in xanthomonadales/*/*.txt; \
+	do \
+		echo -n "$(basename $${BUSCO});" >> $@; \
+		cat $${BUSCO} | perl -nle 'print "$$1;$$2;$$3;$$4;$$5;$$6" if /C:(.*)%\[S:(.*)%,D:(.*)%],F:(.*)%,M:(.*)%,n:(.*)/' >> $@; \
+	done;
+
+extract_fasta: ${FASTA_FILES}
+${INP_DIR}/fasta/%genomic.fna:
+	gunzip -c inputs/$*genomic.fna.gz > $@;
 
 matrixn.${CSV_EXT}: ${BLASTN_FILES}
 	echo  -n ',' > $@;
@@ -119,6 +135,31 @@ ${INP_DIR}/ids.${CSV_EXT}: ${BIN_DIR}/${get_ids}
 	./$< ${SQUERY} >> $@
 	
 	
+${INP_DIR}/Sum.${CSV_EXT}: ${UIDS_FILE}
+	echo "# `date`">$@; \
+	echo "Genbank;Id;RsUid;GbUid;AssemblyAccession;LastMajorReleaseAccession;ChainId;AssemblyName;Taxid;Organism;SpeciesTaxid;SpeciesNAme;AssemblyType;AssemblyStatus;Isolate;Sub_type;Sub_value;Coverage;ContigN50;ScaffoldN50;Title;Host;Strain;Isolation_source;Collection_date;Geo_loc_name" >> $@; \
+	cat ${UIDS_FILE} | tail -n +4 | while read ROW; do \
+		cat inputs/xmls/Assembly_`echo $${ROW} | cut -d "," -f 1`.xml | xtract -pattern DocumentSummary -def "null" -tab ";" -element \
+			Genbank Id RsUid GbUid AssemblyAccession LastMajorReleaseAccession ChainId  AssemblyName Taxid Organism SpeciesTaxid SpeciesNAme AssemblyType AssemblyStatus Isolate Sub_type Sub_value \
+			Coverage ContigN50 ScaffoldN50 | tr "\n" ";" >> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary -def "null" -tab ";" -block SampleData -def "null" -tab ";" -element Title | tr "\n" ";" >> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
+			-block Attribute -if @attribute_name -equals host  -element Attribute | tr -d "\n" >> $@; \
+		echo -n ";">> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
+			-block Attribute -if @attribute_name -equals strain -element Attribute | tr -d "\n" >> $@; \
+		echo -n ";">> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
+			-block Attribute -if @attribute_name -equals isolation_source -element Attribute | tr -d "\n" >> $@; \
+		echo -n ";">> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
+			-block Attribute -if @attribute_name -equals collection_date -element Attribute | tr -d "\n" >> $@; \
+		echo -n ";">> $@; \
+		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
+			-block Attribute -if @attribute_name -equals geo_loc_name -element Attribute >> $@;  \
+	done;
+
+
 ${INP_DIR}/Summary.${CSV_EXT}: ${INP_DIR}/Assembly.${CSV_EXT} ${INP_DIR}/BioSample.${CSV_EXT} ${INP_DIR}/BioProject.${CSV_EXT}
 	echo "# `date`"> $@
 	paste -d ',' $< $(word 2,$^) $(word 3,$^) >> $@
