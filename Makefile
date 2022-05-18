@@ -156,7 +156,8 @@ ${INP_DIR}/Sum.${CSV_EXT}: ${UIDS_FILE}
 			-block Attribute -if @attribute_name -equals collection_date -element Attribute | tr -d "\n" >> $@; \
 		echo -n ";">> $@; \
 		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
-			-block Attribute -if @attribute_name -equals geo_loc_name -element Attribute >> $@;  \
+			-block Attribute -if @attribute_name -equals geo_loc_name -element Attribute | tr -d "\n" >> $@;  \
+		echo "\n" >> $@; \
 	done;
 
 
