@@ -51,9 +51,9 @@ library("WGCNA")
 cleanSumP <- cbind(cleanSumP,Country=sub(":.*", "", cleanSumP$Geo_loc_name))
 countries <- sub(":.*", "", cleanSumP$Geo_loc_name)
 
-colorp <- cbind(labels2colors(cleanSumP$Host),labels2colors(cleanSumP$Isolation_source), labels2colors(cleanSumP$Geo_loc_name), labels2colors(sub(":.*", "", cleanSumP$Geo_loc_name)), numbers2colors(cleanBuscoP$C))
+colorp <- cbind(labels2colors(Pkmeans$cluster), labels2colors(cleanSumP$Host),labels2colors(cleanSumP$Isolation_source), labels2colors(sub(":.*", "", cleanSumP$Geo_loc_name)), numbers2colors(cleanBuscoP$C))
 
-colnames(colorp) <- c("Host", "Isolation_source", "Geo_loc_name", "Country", "Completeness");
+colnames(colorp) <- c("Cluster", "Host", "Isolation_source", "Country", "Completeness");
 
 plotDendroAndColors(clustersp,colorp,cex.dendroLabels = 0.1, addGuide=TRUE)
 
@@ -107,30 +107,29 @@ Nclust5 <- MDSn[MDSn[,2]< -0.05,]
 Nclust5vfg <- labels(which ((colSums(binMatrixn[rownames(Nclust5),])>50) == TRUE))
 plot(MDSn[MDSn[,2]< -0.05,])
 
+
+Pkmeans <- kmeans(distancesp,4)
+
 Pclust1 <- MDSp[MDSp[,1]>0.01 & MDSp[,2]>0.01,]
-Pclust1vfg <- labels(which ((colSums(binMatrixp[rownames(Pclust1),])>length(Pclust1[,1])/3) == TRUE))
+Pclust1vfg <- labels(which ((colSums(binMatrixp[Pkmeans$cluster==1,])>length(which(Pkmeans$cluster==1))/3) == TRUE))
 colorp1 <- colorp[MDSp[,1]>0.01 & MDSp[,2]>0.01,]
 plot(Pclust1, col=colorp1[,1])
 
-Pclust2 <- MDSp[MDSp[,1]>-0.05 & MDSp[,2]>-0.01 & MDSp[,2]<0.01,]
-Pclust2vfg <- labels(which ((colSums(binMatrixp[rownames(Pclust2),])>length(Pclust2[,1])/3) == TRUE))
-colorp2 <- colorp[MDSp[,1]>-0.05 & MDSp[,2]>-0.01 & MDSp[,2]<0.01,]
+Pclust2 <- MDSp[(MDSp[,1]>-0.05 & MDSp[,2]>-0.01 & MDSp[,2]<0.01) | (MDSp[,1]>-0.05 & MDSp[,1]<0.01 & MDSp[,2]>0.01),]
+Pclust2vfg <- labels(which ((colSums(binMatrixp[Pkmeans$cluster==2,])>length(which (Pkmeans$cluster==2))/3) == TRUE))
+colorp2 <- colorp[(MDSp[,1]>-0.05 & MDSp[,2]>-0.01 & MDSp[,2]<0.01) | (MDSp[,1]>-0.05 & MDSp[,1]<0.01 & MDSp[,2]>0.01),]
 plot(Pclust2, col=colorp2[,1])
 
 Pclust3 <- MDSp[MDSp[,1]>-0.05 & MDSp[,2]< -0.01,]
-Pclust3vfg <- labels(which ((colSums(binMatrixp[rownames(Pclust3),])>length(Pclust3[,1])/3) == TRUE))
+Pclust3vfg <- labels(which ((colSums(binMatrixp[Pkmeans$cluster==3,])>length(which (Pkmeans$cluster==3))/3) == TRUE))
 colorp3 <- colorp[MDSp[,1]>-0.05 & MDSp[,2]< -0.01,]
 plot(Pclust3, col=colorp3[,1])
 
-Pclust4 <- MDSp[MDSp[,1]< -0.07 & MDSp[,2]< 0.03,]
-Pclust4vfg <- labels(which ((colSums(binMatrixp[rownames(Pclust4),])>length(Pclust4[,1])/3) == TRUE))
-colorp4 <- colorp[MDSp[,1]< -0.07 & MDSp[,2]< 0.03,]
+Pclust4 <- MDSp[MDSp[,1]< -0.05 & MDSp[,2]< 0.03,]
+Pclust4vfg <- labels(which ((colSums(binMatrixp[Pkmeans$cluster==4,])>length(which (Pkmeans$cluster==4))/3) == TRUE))
+colorp4 <- colorp[MDSp[,1]< -0.05 & MDSp[,2]< 0.03,]
 plot(Pclust4, col=colorp4[,1])
 
-Pclust5 <- MDSp[MDSp[,1]< -0.07 & MDSp[,2]> 0.03,]
-Pclust5vfg <- labels(which ((colSums(binMatrixp[rownames(Pclust5),])>length(Pclust5[,1])/3) == TRUE))
-colorp5 <- colorp[MDSp[,1]< -0.07 & MDSp[,2]> 0.03,]
-plot(Pclust5, col=colorp5[,1])
 
 ```
 ```{r}
@@ -138,7 +137,7 @@ install.packages("ggVennDiagram")
 library(ggVennDiagram)
 
 # List of items
-Pclusters <- list("Pclust1"  = Pclust1vfg , "Pclust2" = Pclust2vfg , "Pclust3" = Pclust3vfg , "Pclust4" = Pclust4vfg , "Pclust5" = Pclust5vfg )
+Pclusters <- list("Turkio"  = Pclust1vfg , "Melynas" = Pclust2vfg , "Rudas" = Pclust3vfg , "Geltonas" = Pclust4vfg )
 Nclusters <- list("Nclust1"  = Nclust1vfg , "Nclust2" = Nclust2vfg , "Nclust3" = Nclust3vfg , "Nclust4" = Nclust4vfg , "Nclust5" = Nclust5vfg )
 
 ggVennDiagram(Pclusters)
@@ -147,12 +146,62 @@ ggVennDiagram(Nclusters)
 ```
 cleanSumP[cleanSumP[,"Country"]==",,,","Country"] <- "missing,,,"
 cleanSumP[cleanSumP[,"Isolation_source"]=="","Isolation_source"] <- "missing"
-sort(prop.table(table(cleanSumP[rownames(Pclust5),"Country"])))
-sort(table(cleanSumP[rownames(Pclust1),"Country"]))
+sort(prop.table(table(cleanSumP[Pkmeans$cluster==1,"Country"])))
+sort(table(cleanSumP[Pkmeans$cluster==1,"Country"]))
+
 tab <- table(cleanSumP[rownames(Pclust1),"Isolation_source"])
 sort(tab)
 sort(prop.table(tab))
 
-1. išsivalyti duom
-2. Aprašymą clusters pagal virulent gen.
-3. Aprašyti clusters pagal metadata
+library(aplpack)
+
+cleanSumP$fCountry <- factor(cleanSumP$Country)
+cleanSumP$fCountry <- as.numeric(cleanSumP$fCountry)
+cleanSumP$fHost <- factor(cleanSumP$Host)
+cleanSumP$fHost <- as.numeric(cleanSumP$fHost)
+cleanSumP$fIsolation_sour
+ce <- factor(cleanSumP$Isolation_source)
+cleanSumP$fIsolation_source <- as.numeric(cleanSumP$fIsolation_source)
+
+faceBase <- cbind(cleanSumP[,27],cleanSumP[,27],1, cleanSumP[,28],cleanSumP[,28], cleanSumP[,28],1,1,cleanSumP[,29],cleanSumP[,29], cleanSumP[,29], 1,1,1,1)
+clust1FaceBase <- facebase[Pkmeans$cluster==1,]
+
+facesP <- faces(cbind(cleanSumP[,27],cleanSumP[,27],1, cleanSumP[,28],cleanSumP[,28], cleanSumP[,28],1,1,cleanSumP[,29],cleanSumP[,29], cleanSumP[,29], 1,1,1,1), plot=FALSE, labels=NULL)
+
+plot(MDSp)
+plot.faces(facesP, MDSp[,1], MDSp[,2], face.type = 1, width = 0.007, height = 0.007)
+
+PColorKmeans <- labels2colors(Pkmeans$cluster)
+
+setEPS()
+postscript("Pclust1CF.eps")
+plot(MDSp[Pkmeans$cluster==1,],col=PColorKmeans[Pkmeans$cluster==1], xlab="", ylab="")
+plot.faces(facesP, MDSp[Pkmeans$cluster==1,1], MDSp[Pkmeans$cluster==1,2], face.type = 1, width = 0.002, height = 0.002, asp=1)
+dev.off()
+
+setEPS()
+postscript("Pclust2CF.eps")
+plot(MDSp[Pkmeans$cluster==2,],col=PColorKmeans[Pkmeans$cluster==2], xlab="", ylab="")
+plot.faces(facesP, MDSp[Pkmeans$cluster==2,1], MDSp[Pkmeans$cluster==2,2], face.type = 1, width = 0.0015, height = 0.0015, asp=1)
+dev.off()
+
+setEPS()
+postscript("Pclust3CF.eps")
+plot(MDSp[Pkmeans$cluster==3,],col=PColorKmeans[Pkmeans$cluster==3], xlab="", ylab="")
+plot.faces(facesP, MDSp[Pkmeans$cluster==3,1], MDSp[Pkmeans$cluster==3,2], face.type = 1, width = 0.009, height = 0.009, asp=1)
+dev.off()
+
+setEPS()
+postscript("Pclust4CF.eps")
+plot(MDSp[Pkmeans$cluster==4,],col=PColorKmeans[Pkmeans$cluster==4], xlab="", ylab="")
+plot.faces(facesP, MDSp[Pkmeans$cluster==4,1], MDSp[Pkmeans$cluster==4,2], face.type = 1, width = 0.004, height = 0.004, asp=1)
+dev.off()
+
+
+plot3d( 
+  x=cleanSumP$fHost, y=cleanSumP$fIsolation_source, z=cleanSumP$fCountry, 
+  col = PColorKmeans, 
+  type = 's', 
+  radius = 1,
+  xlab="Host", ylab="Isolation_source", zlab="Country")
+
