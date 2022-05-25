@@ -218,9 +218,8 @@ ${INP_DIR}/xmls/BioProject_%.xml:
 	efetch -db BioProject -id $* -format xml >> $@;
 
 VFmap.csv:
-	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VFG\d+" > VFG.lst
-	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VF\d+" > VF.lst
-	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VFC\d+" > VFC.lst
-	"VFGID,VFID,VFCID" >> VFmap.csv
- 	echo "VFGID,VFID,VFCID" >> VFmap.csv
-	paste -d ',' VFG.lst VF.lst VFC.lst >> VFmap.csv
+	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VFG\d+" > VFG.lst; \
+	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VF\d+" > VF.lst; \
+	gunzip -c inputs/VFDB_setB_pro.fas.gz | grep -oP "VFC\d+" > VFC.lst; \
+ 	echo "VFGID,VFID,VFCID" > VFmap.csv; \
+	paste -d ',' VFG.lst VF.lst VFC.lst | sort | uniq >> VFmap.csv;
