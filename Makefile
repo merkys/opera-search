@@ -119,10 +119,10 @@ ${OUT_DIR}/%genomic_blastn.tab: ${INP_DIR}/objectives/nucleotides/* ${FASTA_FILE
 get_data: ${R_INP}/Metadata.${CSV_EXT}
 	- for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
 	do \
-		cat ${INP_DIR}/Metadata.${CSV_EXT} | \
+		cat ${R_INP}/Metadata.${CSV_EXT} | \
 		tail -n +3 | \
-		awk -F, "match(\$$33, /\/GCA_/) {print \$$33 substr(\$$33, RSTART) \"$${extension}\"}" \
-		| xargs -I {} wget -P ${INP_DIR} -nc {};\
+		awk "BEGIN{FS=\"\\t\"} match(\$$5, /\/GCA_/) {print \$$5 substr(\$$5, RSTART) \"$${extension}\"}" \
+		| xargs -I {} wget -P ${INP_DIR}/genomes -nc {};\
 		sleep 1; \
 	done;
 
@@ -144,7 +144,7 @@ ${INP_DIR}/ids.${CSV_EXT}: ${BIN_DIR}/${get_ids}
 	./$< ${SQUERY} >> $@
 	
 	
-Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
+${R_INP}/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
 	echo "# `date`">$@; \
 	echo "Genbank	Id	RsUid	GbUid	FtpPath_GenBank	AssemblyAccession	LastMajorReleaseAccession	ChainId	AssemblyName	Taxid	Organism	SpeciesTaxid	SpeciesName	AssemblyType	AssemblyStatus	Isolate	Sub_type	Sub_value	Coverage	ContigN50	ScaffoldN50	Title	Host	Strain	Isolation_source	Collection_date	Geo_loc_name" >> $@; \
 	cat ${UIDS_FILE} | tail -n +4 | while read ROW; do \
@@ -168,7 +168,6 @@ Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
 			-block Attribute -if @attribute_name -equals geo_loc_name -element Attribute | tr -d "\n" >> $@;  \
 		echo -n "\n" >> $@; \
 	done;
-
 
 #${INP_DIR}/Summary.${CSV_EXT}: ${INP_DIR}/Assembly.${CSV_EXT} ${INP_DIR}/BioSample.${CSV_EXT} ${INP_DIR}/BioProject.${CSV_EXT}
 #	echo "# `date`"> $@
@@ -201,7 +200,7 @@ Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
 #	efetch -db BioSample -id $${ID} -format docsum  \
 #	| ./$(word 2,$^) >> $@; \
 #	done;
-	
+
 #${INP_DIR}/BioProject.${CSV_EXT}: ${BIN_DIR}/${get_header} ${BIN_DIR}/${get_summary} ${INP_DIR}/ids.csv
 #	echo "# `date`"> $@
 #	cat ${UIDS_FILE} | tail -n +4 | cut -d , -f 3 | head -n 1 \
@@ -211,7 +210,7 @@ Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
 #	efetch -db BioProject -id $${ID} -format xml  \
 #	| ./$(word 2,$^) >> $@; \
 #	done;
-	
+
 get_xmls: ${ASSEMBLY_FILES} ${BIOSAMPLE_FILES} ${BIOPROJECT_FILES}
 
 ${INP_DIR}/xmls/Assembly_%.xml:
@@ -226,7 +225,7 @@ ${INP_DIR}/xmls/BioProject_%.xml:
 	echo "# `date`"> $@
 	efetch -db BioProject -id $* -format xml >> $@;
 
-Ranalysis/inputs/VFmap.csv:
+${R_INP}/VFmap.${CSV_EXT}:
 	cat inputs/objectives/proteins/VFDB_setB_pro.fas | grep -oP "VFG\d+" > VFG.tmp; \
 	cat inputs/objectives/proteins/VFDB_setB_pro.fas | grep -oP "VF\d+" > VF.tmp; \
 	cat inputs/objectives/proteins/VFDB_setB_pro.fas | grep -oP "VFC\d+" > VFC.tmp; \
