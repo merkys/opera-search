@@ -51,11 +51,11 @@ busco: ${FASTA_FILES}}
 	busco -c 30 -i inputs/genomes/unzipped_genomic_fasta  -l xanthomonadales_odb10 -o xanthomonadales2 -m genome
 
 Ranalysis/inputs/busco_values.csv:
-	echo "C	S	D	F	M	n" > $@; 
+	echo "Genome,C,S,D,F,M,n" > $@; 
 	for BUSCO in xanthomonadales/*/*.txt; \
 	do \
 		echo -n "$(basename $${BUSCO})	" >> $@; \
-		cat $${BUSCO} | perl -nle 'print "$$1	$$2	$$3	$$4	$$5	$$6" if /C:(.*)%\[S:(.*)%,D:(.*)%],F:(.*)%,M:(.*)%,n:(.*)/' >> $@; \
+		cat $${BUSCO} | perl -nle 'print "$$1,$$2,$$3,$$4,$$5,$$6" if /C:(.*)%\[S:(.*)%,D:(.*)%],F:(.*)%,M:(.*)%,n:(.*)/' >> $@; \
 	done;
 
 #extract_fasta: ${FASTA_FILES}
@@ -140,10 +140,10 @@ ${INP_DIR}/ids.${CSV_EXT}: ${BIN_DIR}/${get_ids}
 	
 Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE}
 	echo "# `date`">$@; \
-	echo "Genbank	Id	RsUid	GbUid	AssemblyAccession	LastMajorReleaseAccession	ChainId	AssemblyName	Taxid	Organism	SpeciesTaxid	SpeciesNAme	AssemblyType	AssemblyStatus	Isolate	Sub_type	Sub_value	Coverage	ContigN50	ScaffoldN50	Title	Host	Strain	Isolation_source	Collection_date	Geo_loc_name" >> $@; \
+	echo "Genbank	Id	RsUid	GbUid	AssemblyAccession	LastMajorReleaseAccession	ChainId	AssemblyName	Taxid	Organism	SpeciesTaxid	SpeciesName	AssemblyType	AssemblyStatus	Isolate	Sub_type	Sub_value	Coverage	ContigN50	ScaffoldN50	Title	Host	Strain	Isolation_source	Collection_date	Geo_loc_name" >> $@; \
 	cat ${UIDS_FILE} | tail -n +4 | while read ROW; do \
 		cat inputs/xmls/Assembly_`echo $${ROW} | cut -d "," -f 1`.xml | xtract -pattern DocumentSummary -def "null" -tab "\t" -element \
-			Genbank Id RsUid GbUid AssemblyAccession LastMajorReleaseAccession ChainId  AssemblyName Taxid Organism SpeciesTaxid SpeciesNAme AssemblyType AssemblyStatus Isolate Sub_type Sub_value \
+			Genbank Id RsUid GbUid AssemblyAccession LastMajorReleaseAccession ChainId  AssemblyName Taxid Organism SpeciesTaxid SpeciesName AssemblyType AssemblyStatus Isolate Sub_type Sub_value \
 			Coverage ContigN50 ScaffoldN50 | tr "\n" "\t" >> $@; \
 		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary -def "null" -tab "\t" -block SampleData -def "null" -tab "\t" -element Title | tr "\n" "\t" >> $@; \
 		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
