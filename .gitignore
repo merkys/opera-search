@@ -1,3 +1,4 @@
 inputs/genomes/*.gz
+inputs/fasta/*
 inputs/xmls/*
 outputs/*
