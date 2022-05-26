@@ -51,7 +51,7 @@ busco: ${FASTA_FILES}}
 	busco -c 30 -i inputs/genomes/unzipped_genomic_fasta  -l xanthomonadales_odb10 -o xanthomonadales2 -m genome
 
 Ranalysis/inputs/busco_values.csv:
-	echo "Genomes	C	S	D	F	M	n" > $@; 
+	echo "C	S	D	F	M	n" > $@; 
 	for BUSCO in xanthomonadales/*/*.txt; \
 	do \
 		echo -n "$(basename $${BUSCO})	" >> $@; \
