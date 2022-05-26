@@ -54,7 +54,7 @@ Ranalysis/inputs/busco_values.csv:
 	echo "Genome,C,S,D,F,M,n" > $@; 
 	for BUSCO in xanthomonadales/*/*.txt; \
 	do \
-		echo -n "$(basename $${BUSCO})	" >> $@; \
+		echo -n "$(basename $${BUSCO})," >> $@; \
 		cat $${BUSCO} | perl -nle 'print "$$1,$$2,$$3,$$4,$$5,$$6" if /C:(.*)%\[S:(.*)%,D:(.*)%],F:(.*)%,M:(.*)%,n:(.*)/' >> $@; \
 	done;
 
