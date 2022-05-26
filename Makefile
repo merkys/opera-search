@@ -48,11 +48,13 @@ display:
 get_ready: download_vf
 	mkdir Ranalysis/outputs inputs/genomes inputs/genomes/unzipped_genomic_fasta inputs/xmls
 
-all: ${R_INP}/busco_values.csv ${R_INP}/matrixp.csv ${R_INP}/matrixn.csv ${R_INP}/Metadata.csv ${R_INP}/VFmap.csv
+all: get_data analysis
+
+analysis: ${R_INP}/busco_values.csv ${R_INP}/matrixp.csv ${R_INP}/matrixn.csv ${R_INP}/Metadata.csv ${R_INP}/VFmap.csv
 	Rscript bin/analysis.r
 
 busco: ${FASTA_FILES}
-	busco -c 30 -i inputs/genomes/unzipped_genomic_fasta  -l xanthomonadales_odb10 -o xanthomonadales2 -m genome
+	busco -c 30 -i inputs/genomes/unzipped_genomic_fasta  -l xanthomonadales_odb10 -o xanthomonadales -m genome
 
 Ranalysis/inputs/busco_values.csv: busco
 	echo "Genome,C,S,D,F,M,n" > $@; 
@@ -63,7 +65,7 @@ Ranalysis/inputs/busco_values.csv: busco
 	done;
 
 #extract_fasta: ${FASTA_FILES}
-${INP_DIR}/genomes/unzipped_genomic_fasta/%genomic.fna: get_data ${NUC_FILES}
+${INP_DIR}/genomes/unzipped_genomic_fasta/%genomic.fna: ${NUC_FILES}
 	gunzip -c inputs/$*genomic.fna.gz > $@;
 
 Ranalysis/inputs/matrixn.${CSV_EXT}: ${BLASTN_FILES}
@@ -114,10 +116,10 @@ ${OUT_DIR}/%genomic_blastn.tab: ${INP_DIR}/objectives/nucleotides/* ${FASTA_FILE
 	blastn -qcov_hsp_perc 0.8 -evalue 0.001 -query $< -subject - -outfmt 7 -out $@;
 
 
-get_data: ${INP_DIR}/ids.${CSV_EXT}
+get_data: ${R_INP}/Metadata.${CSV_EXT}
 	- for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
 	do \
-		cat ${INP_DIR}/Assembly.${CSV_EXT} | \
+		cat ${INP_DIR}/Metadata.${CSV_EXT} | \
 		tail -n +3 | \
 		awk -F, "match(\$$33, /\/GCA_/) {print \$$33 substr(\$$33, RSTART) \"$${extension}\"}" \
 		| xargs -I {} wget -P ${INP_DIR} -nc {};\
@@ -127,10 +129,10 @@ get_data: ${INP_DIR}/ids.${CSV_EXT}
 #VFDB_setB_nt.fas.gz VFDB_setB_pro.fas.gz
 download_vf:
 	wget http://mgc.ac.cn/VFs/Down/VFDB_setB_nt.fas.gz -O VFDB_setB_nt.fas.gz; \
-	gunzip -c VFDB_setB_nt.fas.gz > inputs/objectives/nucleotides/VFDB_setB_nt.fas; \
+	gunzip VFDB_setB_nt.fas.gz > inputs/objectives/nucleotides/VFDB_setB_nt.fas; \
 
 	wget http://mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz -O VFDB_setB_pro.fas.gz; \
-	gunzip -c VFDB_setB_pro.fas.gz > inputs/objectives/proteins/VFDB_setB_pro.fas;
+	gunzip VFDB_setB_pro.fas.gz > inputs/objectives/proteins/VFDB_setB_pro.fas;
 
 
 
@@ -142,12 +144,12 @@ ${INP_DIR}/ids.${CSV_EXT}: ${BIN_DIR}/${get_ids}
 	./$< ${SQUERY} >> $@
 	
 	
-Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE}
+Ranalysis/inputs/Metadata.${CSV_EXT}: ${UIDS_FILE} get_xmls
 	echo "# `date`">$@; \
-	echo "Genbank	Id	RsUid	GbUid	AssemblyAccession	LastMajorReleaseAccession	ChainId	AssemblyName	Taxid	Organism	SpeciesTaxid	SpeciesName	AssemblyType	AssemblyStatus	Isolate	Sub_type	Sub_value	Coverage	ContigN50	ScaffoldN50	Title	Host	Strain	Isolation_source	Collection_date	Geo_loc_name" >> $@; \
+	echo "Genbank	Id	RsUid	GbUid	FtpPath_GenBank	AssemblyAccession	LastMajorReleaseAccession	ChainId	AssemblyName	Taxid	Organism	SpeciesTaxid	SpeciesName	AssemblyType	AssemblyStatus	Isolate	Sub_type	Sub_value	Coverage	ContigN50	ScaffoldN50	Title	Host	Strain	Isolation_source	Collection_date	Geo_loc_name" >> $@; \
 	cat ${UIDS_FILE} | tail -n +4 | while read ROW; do \
 		cat inputs/xmls/Assembly_`echo $${ROW} | cut -d "," -f 1`.xml | xtract -pattern DocumentSummary -def "null" -tab "\t" -element \
-			Genbank Id RsUid GbUid AssemblyAccession LastMajorReleaseAccession ChainId  AssemblyName Taxid Organism SpeciesTaxid SpeciesName AssemblyType AssemblyStatus Isolate Sub_type Sub_value \
+			Genbank Id RsUid GbUid FtpPath_GenBank AssemblyAccession LastMajorReleaseAccession ChainId  AssemblyName Taxid Organism SpeciesTaxid SpeciesName AssemblyType AssemblyStatus Isolate Sub_type Sub_value \
 			Coverage ContigN50 ScaffoldN50 | tr "\n" "\t" >> $@; \
 		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary -def "null" -tab "\t" -block SampleData -def "null" -tab "\t" -element Title | tr "\n" "\t" >> $@; \
 		cat inputs/xmls/BioSample_`echo $${ROW} | cut -d "," -f 2`.xml | xtract -pattern DocumentSummary \
@@ -239,3 +241,5 @@ distclean:
 	rm ${INP_DIR}/genomes/*; \
 	rm Ranalysis/inputs/*; \
 	rm Ranalysis/outputs/*; \
+	rm -r busco_downloads; \
+	rm -r xanthomonadales; \
