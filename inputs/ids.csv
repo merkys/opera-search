@@ -1,5 +1,5 @@
-# 2022 m. kovo 24 d. 11:17:41 EET
-# Assembly_search_query=40324 AND latest[filter]
+# 2022 m. kovo 24 d. 11:17:41 EET,,
+# Assembly_search_query=40324[Taxonomy ID] AND latest[filter],,
 Assembly,BioSample,BioProject
 12349561,26589471,814396
 12349531,26589467,814396
