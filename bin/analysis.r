@@ -63,10 +63,10 @@ PkmeansColors[PkmeansColors==4] <- "yellow"
 
 Nkmeans <- kmeans(distancesn,4)
 NkmeansColors <- Nkmeans$cluster
-NkmeansColors[NkmeansColors==1] <- "turquoise"
-NkmeansColors[NkmeansColors==2] <- "blue"
-NkmeansColors[NkmeansColors==3] <- "brown"
-NkmeansColors[NkmeansColors==4] <- "yellow"
+NkmeansColors[NkmeansColors==1] <- "red"
+NkmeansColors[NkmeansColors==2] <- "green"
+NkmeansColors[NkmeansColors==3] <- "magenta"
+NkmeansColors[NkmeansColors==4] <- "orange"
 
 
 cleanSumP <- cbind(cleanSumP,Country=sub(":.*", "", cleanSumP$Geo_loc_name))
@@ -82,7 +82,7 @@ postscript("outputs/pro_dendro.eps")
 plotDendroAndColors(clustersp,colorp,cex.dendroLabels = 0.1, addGuide=TRUE, ylab="Atstumas", main="Klasterių dendrograma")
 dev.off()
 
-colorn <- cbind(labels2colors(Nkmeans$cluster), labels2colors(cleanSumN$Host),labels2colors(cleanSumN$Isolation_source), labels2colors(cleanSumN$Country), numbers2colors(cleanBuscoN$C))
+colorn <- cbind(NkmeansColors, labels2colors(cleanSumN$Host),labels2colors(cleanSumN$Isolation_source), labels2colors(cleanSumN$Country), numbers2colors(cleanBuscoN$C))
 colnames(colorn) <- c("Klasteris", "Nesiotojas", "Izoliatas", "Salis", "Genomo pilnumas");
 
 setEPS()
@@ -97,29 +97,29 @@ MDSn = cmdscale( distancesn )
 
 setEPS()
 postscript("outputs/pro_MDS_clusters.eps")
-plot( MDSp , col=colorp[,1] , main="Multidimensinis masteliavimas. Klasteriai")
+plot( MDSp , col=colorp[,1] , main="Multidimensinis masteliavimas: Klasteriai")
 dev.off()
 setEPS()
 postscript("outputs/nuc_MDS_clusters.eps")
-plot( MDSn , col=colorn[,1] , main="Multidimensinis masteliavimas. Klasteriai")
+plot( MDSn , col=colorn[,1] , main="Multidimensinis masteliavimas: Klasteriai")
 dev.off()
 
 setEPS()
 postscript("outputs/pro_MDS_hosts.eps")
-plot( MDSp , col=colorp[,2] , main="Multidimensinis masteliavimas. Nešiotojai")
+plot( MDSp , col=colorp[,2] , main="Multidimensinis masteliavimas: Nešiotojai")
 dev.off()
 setEPS()
 postscript("outputs/nuc_MDS_hosts.eps")
-plot( MDSn , col=colorn[,2] , main="Multidimensinis masteliavimas. Nešiotojai")
+plot( MDSn , col=colorn[,2] , main="Multidimensinis masteliavimas: Nešiotojai")
 dev.off()
 
 setEPS()
 postscript("outputs/pro_MDS_isolation_source.eps")
-plot( MDSp , col=colorp[,3] , main="Multidimensinis masteliavimas. Izoliatai")
+plot( MDSp , col=colorp[,3] , main="Multidimensinis masteliavimas: Izoliatai")
 dev.off()
 setEPS()
 postscript("outputs/nuc_MDS_isolation_source.eps")
-plot( MDSn , col=colorn[,3] , main="Multidimensinis masteliavimas. Izoliatai")
+plot( MDSn , col=colorn[,3] , main="Multidimensinis masteliavimas: Izoliatai")
 dev.off()
 
 Nclust1vfg <- substr(labels(which ((colSums(binMatrixn[Nkmeans$cluster==1,])>length(which(Nkmeans$cluster==1))/3) == TRUE)),1,9)
@@ -138,17 +138,17 @@ Pclust2vfg <- cbind(Pclust2vfg, vfMap[Pclust2vfg,1:2])
 Pclust3vfg <- cbind(Pclust3vfg, vfMap[Pclust3vfg,1:2])
 Pclust4vfg <- cbind(Pclust4vfg, vfMap[Pclust4vfg,1:2])
 
-PclustersVFG <- list("Turkio"  = Pclust1vfg[,1] , "Melynas" = Pclust2vfg[,1] , "Rudas" = Pclust3vfg[,1] , "Geltonas" = Pclust4vfg[,1] )
-PclustersVF <- list("Turkio"  = Pclust1vfg[,2] , "Melynas" = Pclust2vfg[,2] , "Rudas" = Pclust3vfg[,2] , "Geltonas" = Pclust4vfg[,2] )
-PclustersVFC <- list("Turkio"  = Pclust1vfg[,3] , "Melynas" = Pclust2vfg[,3] , "Rudas" = Pclust3vfg[,3] , "Geltonas" = Pclust4vfg[,3] )
+PclustersVFG <- list("Turkio"  = as.character(Pclust1vfg[,1]) , "Melynas" = as.character(Pclust2vfg[,1]) , "Rudas" = as.character(Pclust3vfg[,1]) , "Geltonas" = as.character(Pclust4vfg[,1]) )
+PclustersVF <- list("Turkio"  = as.character(Pclust1vfg[,2]) , "Melynas" = as.character(Pclust2vfg[,2]) , "Rudas" = as.character(Pclust3vfg[,2]) , "Geltonas" = as.character(Pclust4vfg[,2]) )
+PclustersVFC <- list("Turkio"  = as.character(Pclust1vfg[,3]) , "Melynas" = as.character(Pclust2vfg[,3]) , "Rudas" = as.character(Pclust3vfg[,3]) , "Geltonas" = as.character(Pclust4vfg[,3]) )
 
 Nclust1vfg <- cbind(Nclust1vfg, vfMap[Nclust1vfg,1:2])
 Nclust2vfg <- cbind(Nclust2vfg, vfMap[Nclust2vfg,1:2])
 Nclust3vfg <- cbind(Nclust3vfg, vfMap[Nclust3vfg,1:2])
 Nclust4vfg <- cbind(Nclust4vfg, vfMap[Nclust4vfg,1:2])
-NclustersVFG <- list("Turkio"  = Nclust1vfg[,1] , "Melynas" = Nclust2vfg[,1] , "Rudas" = Nclust3vfg[,1] , "Geltonas" = Nclust4vfg[,1]  )
-NclustersVF <- list("Turkio"  = Nclust1vfg[,2] , "Melynas" = Nclust2vfg[,2] , "Rudas" = Nclust3vfg[,2] , "Geltonas" = Nclust4vfg[,2]  )
-NclustersVFC <- list("Turkio"  = Nclust1vfg[,3] , "Melynas" = Nclust2vfg[,3] , "Rudas" = Nclust3vfg[,3] , "Geltonas" = Nclust4vfg[,3]  )
+NclustersVFG <- list("Raudonas"  = as.character(Nclust1vfg[,1]) , "Zalias" = as.character(Nclust2vfg[,1]) , "Violetinis" = as.character(Nclust3vfg[,1]) , "Oranzinis" = as.character(Nclust4vfg[,1])  )
+NclustersVF <- list("Raudonas"  = as.character(Nclust1vfg[,2]) , "Zalias" = as.character(Nclust2vfg[,2]) , "Violetinis" = as.character(Nclust3vfg[,2]) , "Oranzinis" = as.character(Nclust4vfg[,2])  )
+NclustersVFC <- list("Raudonas"  = as.character(Nclust1vfg[,3]) , "Zalias" = as.character(Nclust2vfg[,3]) , "Violetinis" = as.character(Nclust3vfg[,3]) , "Oranzinis" = as.character(Nclust4vfg[,3])  )
 
 
 setEPS()

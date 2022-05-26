@@ -8,6 +8,7 @@ TXT_EXT=txt
 OUT_DIR=outputs
 INP_DIR=inputs
 BIN_DIR=bin
+R_INP=Ranalysis/inputs
 
 #scripts:
 get_ids=get_uids
@@ -37,20 +38,23 @@ BED_FASTA = ${NUC_FILES:${INP_DIR}/%genomic.fna.gz=${OUT_DIR}/%genomic_intersect
 
 
 
-.PHONY: all display
+.PHONY: all display download_vf get_ready
 
 VAR=PATH
 
 display:
 	echo ${VAR}=${${VAR}}
 
-get_ready:
-	mkdir 
+get_ready: download_vf
+	mkdir Ranalysis/outputs inputs/genomes inputs/genomes/unzipped_genomic_fasta inputs/xmls
 
-busco: ${FASTA_FILES}}
+all: ${R_INP}/busco_values.csv ${R_INP}/matrixp.csv ${R_INP}/matrixn.csv ${R_INP}/Metadata.csv ${R_INP}/VFmap.csv
+	Rscript bin/analysis.r
+
+busco: ${FASTA_FILES}
 	busco -c 30 -i inputs/genomes/unzipped_genomic_fasta  -l xanthomonadales_odb10 -o xanthomonadales2 -m genome
 
-Ranalysis/inputs/busco_values.csv:
+Ranalysis/inputs/busco_values.csv: busco
 	echo "Genome,C,S,D,F,M,n" > $@; 
 	for BUSCO in xanthomonadales/*/*.txt; \
 	do \
@@ -59,7 +63,7 @@ Ranalysis/inputs/busco_values.csv:
 	done;
 
 #extract_fasta: ${FASTA_FILES}
-${INP_DIR}/genomes/unzipped_genomic_fasta/%genomic.fna:
+${INP_DIR}/genomes/unzipped_genomic_fasta/%genomic.fna: get_data ${NUC_FILES}
 	gunzip -c inputs/$*genomic.fna.gz > $@;
 
 Ranalysis/inputs/matrixn.${CSV_EXT}: ${BLASTN_FILES}
@@ -105,21 +109,21 @@ ${OUT_DIR}/%protein_blastp.tab: ${INP_DIR}/objectives/proteins/*
 
 blastn: ${BLASTN_FILES}
 	
-${OUT_DIR}/%genomic_blastn.tab: ${INP_DIR}/objectives/nucleotides/*
-	gunzip -c ${INP_DIR}/$*genomic.fna.gz | \
+${OUT_DIR}/%genomic_blastn.tab: ${INP_DIR}/objectives/nucleotides/* ${FASTA_FILES}
+	cat ${INP_DIR}/genomes/unzipped_genomic_fasta/$*genomic.fna | \
 	blastn -qcov_hsp_perc 0.8 -evalue 0.001 -query $< -subject - -outfmt 7 -out $@;
 
 
-#get_data: ${INP_DIR}/Assembly.${CSV_EXT}
-#	- for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
-#	do \
-#		cat ${INP_DIR}/Assembly.${CSV_EXT} | \
-#		tail -n +3 | \
-#		awk -F, "match(\$$33, /\/GCA_/) {print \$$33 substr(\$$33, RSTART) \"$${extension}\"}" \
-#		| xargs -I {} wget -P ${INP_DIR} -nc {};\
-#		sleep 1; \
-#	done;
-	
+get_data: ${INP_DIR}/ids.${CSV_EXT}
+	- for extension in  _genomic.gff.gz _genomic.gtf.gz _genomic.fna.gz _protein.faa.gz _translated_cds.faa.gz; \
+	do \
+		cat ${INP_DIR}/Assembly.${CSV_EXT} | \
+		tail -n +3 | \
+		awk -F, "match(\$$33, /\/GCA_/) {print \$$33 substr(\$$33, RSTART) \"$${extension}\"}" \
+		| xargs -I {} wget -P ${INP_DIR} -nc {};\
+		sleep 1; \
+	done;
+
 #VFDB_setB_nt.fas.gz VFDB_setB_pro.fas.gz
 download_vf:
 	wget http://mgc.ac.cn/VFs/Down/VFDB_setB_nt.fas.gz -O VFDB_setB_nt.fas.gz; \
@@ -227,3 +231,11 @@ Ranalysis/inputs/VFmap.csv:
  	echo "VFGID,VFID,VFCID" > $@; \
 	paste -d ',' VFG.tmp VF.tmp VFC.tmp | sort | uniq >> $@; \
 	rm V*.tmp;
+
+distclean:
+	rm ${INP_DIR}/*.${CSV_EXT}; \
+	rm ${INP_DIR}/objectives/nucleotides/*; \
+	rm ${INP_DIR}/objectives/proteins/*; \
+	rm ${INP_DIR}/genomes/*; \
+	rm Ranalysis/inputs/*; \
+	rm Ranalysis/outputs/*; \
