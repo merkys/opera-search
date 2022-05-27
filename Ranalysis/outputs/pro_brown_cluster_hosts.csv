@@ -1,37 +1,17 @@
-"Country","Count"
-"amoeba",0
-"Bactrocera oleae",0
-"Bos taurus",0
-"Caenorhabditis remanei",0
-"Cat",0
-"Chicken",0
-"clivia",0
-"duck",0
-"Duck",0
-"Homo sapiens female",0
-"horse",0
-"Ictalurus punctatus",0
-"Lagria villosa",0
-"Lemur",0
-"Macaca fascicularis",0
-"Mice",0
-"Mus musculus",0
-"plant",0
-"sunflower",0
-"swine",0
-"Zea mays",0
-"Anopheles stephensi",1
-"Calibrachoa elegans",1
-"Danio",1
-"Leptinotarsa decemlineata (Colorado potato beetle)",1
+"Host","Count"
+"anopheles stephensi",1
+"danio",1
+"homo sapiens female",1
+"ictalurus punctatus",1
+"leptinotarsa decemlineata (colorado potato beetle)",1
 "not applicable",1
-"Reptile",1
-"Seal",1
-"Snake",1
-"Solanum lycopersicum",1
-"Dog",2
-"missing",5
-"dairy cows",13
-"",32
-"Horse",34
-"Homo sapiens",176
+"reptile",1
+"seal",1
+"solanum lycopersicum",1
+"sunflower",1
+"dog",2
+"missing",4
+"dairy cows",15
+"",21
+"horse",30
+"homo sapiens",167

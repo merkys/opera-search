@@ -1,36 +1,36 @@
 "Country","Count"
-"Benin",0
-"Bulgaria",0
-"Canada",0
-"Democratic Republic of the Congo",0
-"Greece",0
-"Japan",0
-"Madagascar",0
-"Norway",0
+"benin",0
+"canada",0
+"democratic republic of the congo",0
+"greece",0
+"hong kong",0
+"italy",0
+"japan",0
+"madagascar",0
+"morocco",0
+"norway",0
 "not applicable",0
-"Serbia",0
-"South Africa",0
-"Sri Lanka",0
-"Taiwan",0
-"Australia",1
-"Italy",1
-"Malaysia",1
-"Mexico",1
+"serbia",0
+"taiwan",0
+"zaire",0
+"bulgaria",1
+"france",1
+"malaysia",1
+"mexico",1
 "missing",1
-"Morocco",1
-"Slovenia",1
-"Tunisia",1
-"United Kingdom",1
-"Zaire",1
-"Brazil",3
-"Nigeria",3
-"Hong Kong",4
-"France",5
-"Pakistan",6
-"Belgium",7
-"India",9
-"Spain",13
-"China",30
-"Germany",35
-"",68
-"USA",78
+"south africa",1
+"sri lanka",1
+"tunisia",1
+"united kingdom",1
+"brazil",2
+"australia",3
+"nigeria",3
+"pakistan",6
+"slovenia",6
+"belgium",9
+"spain",9
+"india",10
+"germany",22
+"china",23
+"",67
+"usa",80

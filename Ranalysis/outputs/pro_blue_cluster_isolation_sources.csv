@@ -1,125 +1,36 @@
-"Country","Count"
-"aerobic granular sludge",0
-"alcohol foam dispenser in hospital intensive care unit",0
-"anal swab",0
-"ascites",0
-"ballast water",0
-"barley rhizosphere",0
-"beetle eggs",0
-"bile acid of cholelithiasis patient",0
-"biofilm reactor",0
-"bronch",0
-"caecum",0
-"catheter",0
-"CF sputum",0
-"commercial nano-particles",0
-"cucumber rhizosphere",0
-"Decubitus ulcer",0
-"dental calculus from 1882-early 1900s human skeletal remains maintained in natural history museum",0
-"Dentine Caries",0
-"desert sand",0
-"Domestic sewage",0
-"drinking water",0
-"ear swab",0
-"Environment",0
-"Environmental control",0
-"eye",0
-"Eye-care solution",0
-"freshwater stream",0
-"Glacier",0
-"Hospital hot water tap",0
-"hospital NICU surfaces and sink samples",0
-"human",0
-"HVS",0
-"infant feces",0
-"intestine",0
-"Laboratory sink",0
-"lung",0
-"lungs of cystic fibrosis patient A",0
-"maize soil rhizosphere",0
-"manure",0
-"nose swab",0
-"Nuclear waste",0
-"oil contaminated soil",0
-"organic lettuce and spinach mix",0
-"oropharynx",0
-"pavement soil",0
-"perineum",0
-"Perineum",0
-"Peritoneal Fluid",0
-"Pharyngeal exudate",0
-"Piper betle",0
-"pulmonary",0
-"raw intact chicken",0
-"Residence cold water tap",0
-"respiratory Cx",0
-"rhizosphere",0
-"Rhizosphere of rape",0
-"roots",0
-"scope",0
-"Sewage",0
-"Sewage from swine farm",0
-"Sewage from zoo",0
-"shale",0
-"Soil from swine farm",0
-"soil1",0
-"sputum from cystic fibrosis patient",0
-"surface water",0
-"Surgical wound",0
-"terrestrial",0
-"Tetracycline contaminated soil",0
-"Tissue",0
-"tracheal aspirate",0
-"tracheobronchial aspirate",0
-"unknown",0
-"Urethral",0
-"urine sample from patient with urinary tract infection",0
-"vascular ulcer",0
-"Vascular Ulcera",0
-"Vegetable from swine farm",0
-"whole mosquito body",0
-"wings",0
-"Brackish water",1
-"Bronch",1
-"Bronchial aspirate",1
-"cattle manure",1
-"cerebrospinal fluid",1
-"clinical isolate",1
+"Isolation_source","Count"
+"bronch",1
+"cf sputum",1
+"environment",1
 "environmental",1
-"feces",1
-"Grower Feed",1
+"freshwater stream",1
 "gut",1
-"hospital patient",1
-"intensive care uit",1
-"liver",1
-"lungs of cystic fibrosis patient B",1
-"lungs of cystic fibrosis patient C",1
-"not collected",1
-"Perineum swab",1
-"Pus",1
-"Pus from a wound",1
-"rectal swab",1
-"Respiratory secretion",1
+"lungs of cystic fibrosis patient a",1
+"pulmonary",1
+"pus",1
+"respiratory secretion",1
 "respiratory tract",1
-"Rhizosphere of potato",1
-"root",1
+"rhizosphere of potato",1
 "soil",1
-"Storm drain water",1
+"storm drain water",1
 "thracheal aspirate",1
-"Throat (pharynx)",1
-"Ulu Slim Hot Spring",1
+"ulu slim hot spring",1
 "vermicompost of cattle manure",1
 "washroom sink in hospital intensive care unit",1
 "wastewater",1
-"horse manure",2
-"respiratory",2
-"Rhizosphere of oilseed rape",2
+"water",1
+"cattle manure",2
+"grower feed",2
+"lungs of cystic fibrosis patient b",2
+"oropharinx",2
+"rhizosphere of oilseed rape",2
 "stool",2
-"water",3
-"missing",4
-"Oropharinx",4
-"urine",5
-"wound",7
-"blood",8
-"sputum",27
-"",74
+"blood",3
+"horse manure",3
+"respiratory",3
+"perineum swab",4
+"missing",6
+"wound",6
+"urine",8
+"sputum",11
+"",53
