@@ -1,65 +1,27 @@
 "Isolation_source","Count"
-"bile acid of cholelithiasis patient",1
-"brackish water",1
-"cattle manure",1
-"decubitus ulcer",1
-"desert sand",1
-"domestic sewage",1
-"ear swab",1
-"environment",1
-"environmental control",1
-"hospital hot water tap",1
-"liver",1
-"lungs of cystic fibrosis patient a",1
-"nose swab",1
-"not collected",1
-"organic lettuce and spinach mix",1
-"oropharynx",1
-"pavement soil",1
-"peritoneal fluid",1
-"pharyngeal exudate",1
-"piper betle",1
-"pus",1
-"residence cold water tap",1
-"respiratory cx",1
-"respiratory secretion",1
-"rhizosphere",1
-"roots",1
-"shale",1
+"ballast water",1
+"bronchial aspirate",1
+"cf sputum",1
+"environmental",1
+"feces",1
+"gut",1
+"intestine",1
+"laboratory sink",1
+"scope",1
+"soil",1
 "soil from swine farm",1
-"tracheobronchial aspirate",1
-"ulu slim hot spring",1
-"unknown",1
-"vegetable from swine farm",1
-"vermicompost of cattle manure",1
-"catheter",2
-"cerebrospinal fluid",2
-"grower feed",2
-"lungs of cystic fibrosis patient b",2
-"pulmonary",2
-"rhizosphere of oilseed rape",2
-"sewage",2
-"sewage from swine farm",2
-"soil",2
-"stool",2
-"tissue",2
-"washroom sink in hospital intensive care unit",2
-"water",2
-"anal swab",3
-"bronch",3
-"drinking water",3
-"horse manure",3
-"manure",3
-"rectal swab",3
-"wastewater",3
-"freshwater stream",5
-"respiratory",5
-"wound",8
-"urine",10
-"oropharinx",12
-"blood",22
-"perineum swab",27
-"missing",33
-"lung",43
-"sputum",45
-"",98
+"soil1",1
+"vascular ulcer",1
+"vascular ulcera",1
+"whole mosquito body",1
+"bronch",2
+"perineum",2
+"urine",3
+"oropharinx",4
+"wound",6
+"blood",7
+"perineum swab",8
+"missing",20
+"sputum",28
+"lung",37
+"",74

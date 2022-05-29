@@ -1,46 +1,30 @@
 "Host","Count"
-"alcohol foam dispenser in hospital intensive care unit",1
-"brackish water",1
-"bronchial aspirate",1
-"cerebrospinal fluid",1
-"decubitus ulcer",1
-"dentine caries",1
-"desert sand",1
-"domestic sewage",1
-"drinking water",1
-"environmental control",1
+"bronch",1
 "freshwater stream",1
-"laboratory sink",1
-"liver",1
+"horse manure",1
+"hvs",1
+"lungs of cystic fibrosis patient a",1
 "lungs of cystic fibrosis patient b",1
-"lungs of cystic fibrosis patient c",1
-"nuclear waste",1
-"oropharynx",1
-"peritoneal fluid",1
+"not collected",1
 "pharyngeal exudate",1
-"rectal swab",1
-"roots",1
-"scope",1
-"sewage",1
-"soil",1
-"tissue",1
+"piper betle",1
+"pulmonary",1
+"respiratory cx",1
+"root",1
+"stool",1
+"storm drain water",1
+"thracheal aspirate",1
 "tracheobronchial aspirate",1
-"unknown",1
-"vascular ulcer",1
-"vascular ulcera",1
-"whole mosquito body",1
-"wings",1
-"catheter",2
-"perineum",2
+"rectal swab",2
 "respiratory",2
-"wastewater",2
-"bronch",3
+"sewage",2
+"tissue",2
+"water",2
+"perineum swab",3
 "urine",3
-"missing",4
-"washroom sink in hospital intensive care unit",5
-"wound",7
-"oropharinx",8
-"blood",10
-"perineum swab",24
-"sputum",44
-"",86
+"wound",3
+"missing",5
+"oropharinx",6
+"blood",14
+"sputum",23
+"",33

@@ -1,42 +1,40 @@
 "Isolation_source","Count"
-"cattle manure",1
-"clinical isolate",1
-"commercial nano-particles",1
-"cucumber rhizosphere",1
-"eye-care solution",1
-"feces",1
-"hospital patient",1
-"hvs",1
-"intensive care uit",1
-"maize soil rhizosphere",1
-"perineum",1
-"pharyngeal exudate",1
-"pus from a wound",1
-"respiratory cx",1
-"rhizosphere of rape",1
-"root",1
-"stool",1
-"surface water",1
-"surgical wound",1
-"throat (pharynx)",1
-"unknown",1
-"water",1
+"bile acid of cholelithiasis patient",1
+"cerebrospinal fluid",1
+"cf sputum",1
+"ear swab",1
+"environment",1
+"environmental",1
+"gut",1
+"hospital hot water tap",1
+"organic lettuce and spinach mix",1
+"pus",1
+"residence cold water tap",1
+"respiratory secretion",1
+"respiratory tract",1
+"rhizosphere of potato",1
+"tissue",1
+"ulu slim hot spring",1
+"vermicompost of cattle manure",1
+"washroom sink in hospital intensive care unit",1
+"wastewater",1
 "bronch",2
+"cattle manure",2
 "drinking water",2
-"eye",2
-"not collected",2
-"respiratory",2
-"respiratory tract",2
-"sewage",2
-"bronchial aspirate",3
-"soil",3
-"tissue",3
-"freshwater stream",4
-"oropharinx",6
+"freshwater stream",2
+"grower feed",2
+"lungs of cystic fibrosis patient b",2
+"pulmonary",2
+"rhizosphere of oilseed rape",2
+"soil",2
+"stool",2
+"horse manure",3
+"respiratory",3
+"wound",4
+"oropharinx",5
 "perineum swab",6
 "missing",7
-"urine",7
-"blood",11
-"wound",11
-"sputum",61
-"",79
+"blood",9
+"urine",10
+"sputum",21
+"",69

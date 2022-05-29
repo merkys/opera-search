@@ -1,25 +1,44 @@
 "Isolation_source","Count"
-"bile acid of cholelithiasis patient",1
-"bronch",1
+"alcohol foam dispenser in hospital intensive care unit",1
+"brackish water",1
+"bronchial aspirate",1
 "cerebrospinal fluid",1
-"cf sputum",1
-"ear swab",1
-"horse manure",1
-"hospital hot water tap",1
-"organic lettuce and spinach mix",1
-"residence cold water tap",1
-"respiratory secretion",1
+"decubitus ulcer",1
+"dentine caries",1
+"desert sand",1
+"domestic sewage",1
+"drinking water",1
+"environmental control",1
+"laboratory sink",1
+"liver",1
+"lungs of cystic fibrosis patient c",1
+"nuclear waste",1
+"oropharynx",1
+"peritoneal fluid",1
+"pharyngeal exudate",1
+"rectal swab",1
 "rhizosphere",1
+"roots",1
+"scope",1
+"sewage",1
 "soil",1
 "tissue",1
-"drinking water",2
-"pulmonary",2
-"urine",2
-"wound",2
-"freshwater stream",3
-"oropharinx",3
-"perineum swab",4
+"unknown",1
+"vascular ulcer",1
+"vascular ulcera",1
+"whole mosquito body",1
+"wings",1
+"catheter",2
+"freshwater stream",2
+"perineum",2
+"wastewater",2
+"bronch",3
+"urine",3
+"washroom sink in hospital intensive care unit",5
 "missing",6
-"blood",9
-"sputum",15
-"",25
+"oropharinx",7
+"wound",9
+"blood",11
+"perineum swab",26
+"sputum",44
+"",81

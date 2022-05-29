@@ -1,37 +1,36 @@
 "Host","Count"
-"environment",1
-"environmental",1
-"freshwater stream",1
-"gut",1
-"lungs of cystic fibrosis patient a",1
-"not collected",1
-"piper betle",1
-"pulmonary",1
-"pus",1
-"respiratory tract",1
-"rhizosphere of potato",1
-"soil",1
-"storm drain water",1
-"thracheal aspirate",1
-"ulu slim hot spring",1
-"vermicompost of cattle manure",1
-"washroom sink in hospital intensive care unit",1
-"wastewater",1
+"cattle manure",1
+"clinical isolate",1
+"commercial nano-particles",1
+"cucumber rhizosphere",1
+"eye-care solution",1
+"feces",1
+"hospital patient",1
+"intensive care uit",1
+"maize soil rhizosphere",1
+"perineum",1
+"pus from a wound",1
+"rhizosphere of rape",1
+"surface water",1
+"surgical wound",1
+"throat (pharynx)",1
+"tissue",1
+"unknown",1
+"water",1
 "bronch",2
-"cattle manure",2
-"grower feed",2
-"lungs of cystic fibrosis patient b",2
-"rectal swab",2
-"rhizosphere of oilseed rape",2
-"stool",2
-"water",2
-"horse manure",3
-"respiratory",3
-"missing",5
-"oropharinx",5
-"perineum swab",5
-"wound",6
-"urine",8
-"blood",9
-"sputum",19
-"",57
+"drinking water",2
+"eye",2
+"not collected",2
+"respiratory",2
+"respiratory tract",2
+"bronchial aspirate",3
+"soil",3
+"freshwater stream",4
+"missing",4
+"oropharinx",4
+"perineum swab",4
+"urine",4
+"blood",5
+"wound",10
+"sputum",51
+"",64
