@@ -1,17 +1,15 @@
 "Host","Count"
 "anopheles stephensi",1
 "danio",1
-"homo sapiens female",1
 "ictalurus punctatus",1
 "leptinotarsa decemlineata (colorado potato beetle)",1
-"not applicable",1
 "reptile",1
 "seal",1
+"snake",1
 "solanum lycopersicum",1
-"sunflower",1
 "dog",2
-"missing",4
-"dairy cows",15
-"",21
-"horse",30
-"homo sapiens",167
+"missing",2
+"dairy cows",13
+"",23
+"horse",36
+"homo sapiens",149

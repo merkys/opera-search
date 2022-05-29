@@ -54,11 +54,48 @@
            >>
          ] setcolorspace } bind def
 /srgb { setcolor } bind def
+% begin encoding
+/ISOLatin7Encoding [
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright
+ /parenleft /parenright /asterisk /plus /comma /minus /period /slash
+ /zero /one /two /three /four /five /six /seven
+ /eight /nine /colon /semicolon /less /equal /greater /question
+ /at /A /B /C /D /E /F /G
+ /H /I /J /K /L /M /N /O
+ /P /Q /R /S /T /U /V /W
+ /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+ /quoteleft /a /b /c /d /e /f /g
+ /h /i /j /k /l /m /n /o
+ /p /q /r /s /t /u /v /w
+ /x /y /z /braceleft /bar /braceright /asciitilde /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /space /quotedblright /cent /sterling /currency /quotedblbase /brokenbar /section
+ /Oslash /copyright /Rcommaaccent /guillemotleft /logicalnot /hyphen /registered /AE
+ /degree /plusminus /twosuperior /threesuperior /quotedblleft /mu /paragraph /periodcentered
+ /oslash /onesuperior /rcommaaccent /guillemotright /onequarter /onehalf /threequarters /ae
+ /Aogonek /Iogonek /Amacron /Cacute /Adieresis /Aring /Eogonek /Emacron
+ /Ccaron /Eacute /Zacute /Edotaccent /Gcommaaccent /Kcommaaccent /Imacron /Lcommaaccent
+ /Scaron /Nacute /Ncommaaccent /Oacute /Omacron /Otilde /Odieresis /multiply
+ /Uogonek /Lslash /Sacute /Umacron /Udieresis /Zdotaccent /Zcaron /germandbls
+ /aogonek /iogonek /amacron /cacute /adieresis /aring /eogonek /emacron
+ /ccaron /eacute /zacute /edotaccent /gcommaaccent /kcommaaccent /imacron /lcommaaccent
+ /scaron /nacute /ncommaaccent /oacute /omacron /otilde /odieresis /divide
+ /uogonek /lslash /sacute /umacron /udieresis /zdotaccent /zcaron /quoteright
+]
+ def
+% end encoding
 %%IncludeResource: font Helvetica
 /Helvetica findfont
 dup length dict begin
   {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding ISOLatin1Encoding def
+  /Encoding ISOLatin7Encoding def
   currentdict
   end
 /Font1 exch definefont pop
@@ -66,7 +103,7 @@ dup length dict begin
 /Helvetica-Bold findfont
 dup length dict begin
   {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding ISOLatin1Encoding def
+  /Encoding ISOLatin7Encoding def
   currentdict
   end
 /Font2 exch definefont pop
@@ -74,7 +111,7 @@ dup length dict begin
 /Helvetica-Oblique findfont
 dup length dict begin
   {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding ISOLatin1Encoding def
+  /Encoding ISOLatin7Encoding def
   currentdict
   end
 /Font3 exch definefont pop
@@ -82,7 +119,7 @@ dup length dict begin
 /Helvetica-BoldOblique findfont
 dup length dict begin
   {1 index /FID ne {def} {pop pop} ifelse} forall
-  /Encoding ISOLatin1Encoding def
+  /Encoding ISOLatin7Encoding def
   currentdict
   end
 /Font4 exch definefont pop
@@ -1179,7 +1216,7 @@ np
 4.86 0 l
 4.24 0 l
 o
-/bg { 0.0784 0.1765 0.2706 srgb } def
+/bg { 0.0941 0.2118 0.3176 srgb } def
 0.3490 0.3490 0.3490 srgb
 1.07 setlinewidth
 [] 0 setdash
@@ -1299,7 +1336,7 @@ np
 3.55 4.96 l
 cp
 p7
-/bg { 0.0784 0.1725 0.2706 srgb } def
+/bg { 0.0784 0.1765 0.2706 srgb } def
 np
  108.21 390.52 m
 2.97 3.44 l
@@ -1348,6 +1385,7 @@ np
 2.49 3.89 l
 cp
 p7
+/bg { 0.0784 0.1804 0.2745 srgb } def
 np
  339.15 390.14 m
 3.43 -2.98 l
@@ -1394,7 +1432,7 @@ np
 3.86 -2.53 l
 cp
 p7
-/bg { 0.0863 0.1922 0.2941 srgb } def
+/bg { 0.0745 0.1686 0.2667 srgb } def
 np
  417.06 349.88 m
 4.51 -4.04 l
@@ -1513,7 +1551,6 @@ np
 4.96 -3.55 l
 cp
 p7
-/bg { 0.0745 0.1686 0.2627 srgb } def
 np
  100.77 363.18 m
 0.97 -0.08 l
@@ -1550,7 +1587,7 @@ np
 -0.01 2.29 l
 cp
 p7
-/bg { 0.1098 0.2353 0.3529 srgb } def
+/bg { 0.1176 0.2510 0.3725 srgb } def
 np
  165.42 153.21 m
 -2.60 -0.52 l
@@ -1658,7 +1695,7 @@ np
 5.39 -1.55 l
 cp
 p7
-/bg { 0.0745 0.1686 0.2667 srgb } def
+/bg { 0.1059 0.2275 0.3412 srgb } def
 np
  183.42 329.98 m
 2.97 2.87 l
@@ -1691,7 +1728,7 @@ np
 -2.60 1.71 l
 cp
 p7
-/bg { 0.0902 0.1961 0.3020 srgb } def
+/bg { 0.0745 0.1686 0.2627 srgb } def
 np
  323.62 275.51 m
 3.56 -5.17 l
@@ -1744,7 +1781,7 @@ np
 4.54 6.77 l
 cp
 p7
-/bg { 0.1098 0.2431 0.3608 srgb } def
+/bg { 0.0824 0.1843 0.2824 srgb } def
 np
  353.28 362.26 m
 0.20 -1.78 l
@@ -1781,7 +1818,7 @@ np
 2.43 0.37 l
 cp
 p7
-/bg { 0.0784 0.1725 0.2706 srgb } def
+/bg { 0.1176 0.2510 0.3765 srgb } def
 np
  183.42 329.98 m
 2.60 -1.71 l
@@ -1818,7 +1855,7 @@ np
 4.18 4.08 l
 cp
 p7
-/bg { 0.1059 0.2314 0.3490 srgb } def
+/bg { 0.0745 0.1686 0.2627 srgb } def
 np
  278.86 221.42 m
 0.51 -1.04 l
@@ -1849,7 +1886,7 @@ np
 4.69 4.55 l
 cp
 p7
-/bg { 0.1176 0.2588 0.3804 srgb } def
+/bg { 0.0902 0.2039 0.3059 srgb } def
 np
  229.63 181.52 m
 -0.98 -0.66 l
@@ -1881,7 +1918,7 @@ np
 2.97 -2.04 l
 cp
 p7
-/bg { 0.0824 0.1843 0.2824 srgb } def
+/bg { 0.1216 0.2627 0.3882 srgb } def
 np
  230.28 290.51 m
 4.13 4.28 l
@@ -2378,84 +2415,84 @@ o
 11.49 371.61 (T) 0 ta
 -1.440 (ur) tb
 0.180 (kio) tb gr
-114.78 410.11 (Melynas) .5 0 t
+114.78 410.11 (Mëlynas) .5 0 t
 331.34 405.30 (Rudas) .5 0 t
 437.22 371.61 (Geltonas) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-76.57 228.02 (4) .5 0 t
-76.57 215.78 (\(1%\)) .5 0 t
+1 1 1 srgb
+76.57 228.02 (25) .5 0 t
+76.57 215.78 (\(5%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-165.35 369.32 (3) .5 0 t
+1 1 1 srgb
+165.35 369.32 (4) .5 0 t
 165.35 357.08 (\(1%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-294.91 365.88 (3) .5 0 t
+1 1 1 srgb
+294.91 365.88 (6) .5 0 t
 294.91 353.64 (\(1%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-385.61 229.32 (14) .5 0 t
-385.61 217.08 (\(3%\)) .5 0 t
+1 1 1 srgb
+385.61 229.32 (1) .5 0 t
+385.61 217.08 (\(0%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-141.16 316.91 (0) .5 0 t
+1 1 1 srgb
+141.16 316.91 (1) .5 0 t
 141.16 304.67 (\(0%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-143.55 214.71 (40) .5 0 t
-143.55 202.47 (\(8%\)) .5 0 t
+1 1 1 srgb
+143.55 214.71 (48) .5 0 t
+143.55 202.47 (\(9%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
+1 1 1 srgb
 230.28 139.58 (0) .5 0 t
 230.28 127.34 (\(0%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-230.28 330.93 (1) .5 0 t
-230.28 318.69 (\(0%\)) .5 0 t
+1 1 1 srgb
+230.28 330.93 (35) .5 0 t
+230.28 318.69 (\(7%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-319.98 211.96 (18) .5 0 t
-319.98 199.72 (\(4%\)) .5 0 t
+1 1 1 srgb
+319.98 211.96 (0) .5 0 t
+319.98 199.72 (\(0%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-316.73 321.86 (44) .5 0 t
-316.73 309.62 (\(9%\)) .5 0 t
+1 1 1 srgb
+316.73 321.86 (9) .5 0 t
+316.73 309.62 (\(2%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-178.27 278.58 (3) .5 0 t
-178.27 266.34 (\(1%\)) .5 0 t
+1 1 1 srgb
+178.27 278.58 (49) .5 0 t
+178.27 266.34 (\(9%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-262.55 185.60 (39) .5 0 t
-262.55 173.36 (\(8%\)) .5 0 t
+1 1 1 srgb
+262.55 185.60 (0) .5 0 t
+262.55 173.36 (\(0%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-195.03 189.82 (53) .5 0 t
-195.03 177.58 (\(10%\)) .5 0 t
+1 1 1 srgb
+195.03 189.82 (20) .5 0 t
+195.03 177.58 (\(4%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-282.55 278.80 (9) .5 0 t
-282.55 266.56 (\(2%\)) .5 0 t
+1 1 1 srgb
+282.55 278.80 (55) .5 0 t
+282.55 266.56 (\(10%\)) .5 0 t
 0.00 73.34 460.56 430.66 cl
 /Font1 findfont 12 s
-0.6275 0.1255 0.9412 srgb
-230.28 235.11 (283) .5 0 t
-230.28 222.87 (\(55%\)) .5 0 t
+1 1 1 srgb
+230.28 235.11 (277) .5 0 t
+230.28 222.87 (\(52%\)) .5 0 t
 0.00 0.00 504.00 504.00 cl
 0.00 0.00 504.00 504.00 cl
 0.00 0.00 504.00 504.00 cl
@@ -2518,8 +2555,8 @@ grestore
 /Font1 findfont 9 s
 0 0 0 srgb
 488.99 199.72 (0) 0 0 t
-488.99 228.72 (100) 0 0 t
-488.99 257.73 (200) 0 0 t
+488.99 229.35 (100) 0 0 t
+488.99 258.98 (200) 0 0 t
 0.00 0.00 504.00 504.00 cl
 0.00 0.00 504.00 504.00 cl
 0.00 0.00 504.00 504.00 cl
@@ -2541,11 +2578,11 @@ np
 3.45 0 l
 o
 np
-466.23 231.95 m
+466.23 232.58 m
 3.45 0 l
 o
 np
-466.23 260.96 m
+466.23 262.21 m
 3.45 0 l
 o
 np
@@ -2553,11 +2590,11 @@ np
 3.46 0 l
 o
 np
-480.05 231.95 m
+480.05 232.58 m
 3.46 0 l
 o
 np
-480.05 260.96 m
+480.05 262.21 m
 3.46 0 l
 o
 0.00 0.00 504.00 504.00 cl

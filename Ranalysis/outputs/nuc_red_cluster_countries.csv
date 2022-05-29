@@ -1,37 +1,40 @@
 "Country","Count"
-"brazil",0
 "bulgaria",0
 "canada",0
 "democratic republic of the congo",0
 "greece",0
-"italy",0
 "madagascar",0
 "malaysia",0
 "morocco",0
-"not applicable",0
-"pakistan",0
+"south korea",0
 "sri lanka",0
 "taiwan",0
 "tunisia",0
 "united kingdom",0
 "zaire",0
+"belarus",1
 "benin",1
-"japan",1
 "mexico",1
+"missing",1
 "norway",1
+"not applicable",1
 "serbia",1
 "south africa",1
 "unknown",1
 "australia",2
-"missing",2
-"belgium",3
-"france",3
+"france",2
+"lebanon",2
+"japan",3
 "nigeria",3
-"hong kong",4
-"slovenia",4
-"india",9
-"spain",10
-"germany",15
-"china",27
-"",57
-"usa",90
+"slovenia",3
+"belgium",5
+"hong kong",5
+"pakistan",5
+"brazil",7
+"india",8
+"spain",8
+"germany",12
+"",43
+"china",44
+"italy",48
+"usa",138
